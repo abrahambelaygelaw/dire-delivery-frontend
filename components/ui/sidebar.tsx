@@ -20,6 +20,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { GiHamburgerMenu } from "react-icons/gi"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
@@ -273,14 +274,14 @@ const SidebarTrigger = React.forwardRef<
       data-sidebar="trigger"
       variant="default"
       size="icon"
-      className={cn("h-7 w-7 bg-[#060A87]", className)}
+      className={cn(" bg-[#060A87]", className)}
       onClick={(event) => {
         onClick?.(event)
         toggleSidebar()
       }}
       {...props}
     >
-      <FiMenu stroke="white"/>
+     <GiHamburgerMenu stroke="white" size={28}/>
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   )
