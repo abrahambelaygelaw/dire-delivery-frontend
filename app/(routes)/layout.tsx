@@ -1,7 +1,11 @@
+import BaseLayout from "@/components/shared/layout/base-layout";
+
 export default function RouteLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <div>{children}</div>;
+  return (
+    <BaseLayout>{children}</BaseLayout>
+  );
 }
