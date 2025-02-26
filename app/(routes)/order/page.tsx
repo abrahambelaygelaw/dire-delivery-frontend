@@ -1,9 +1,27 @@
+'use client';
+
 import Image from 'next/image';
 import plane from '@/public/Icons/plane.svg';
 import { LuMapPin } from 'react-icons/lu';
 import { FaFacebookF, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
+
 
 export default function Page() {
+  const [orderId, setOrderId] = useState('');
+  const [transactionid, setTransactionid] = useState<string>('');
+
+  useEffect(() => {
+    console.log('transactionid:', transactionid);
+
+  }, [transactionid]);
+
+  const handleSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    setTransactionid(orderId); // Update state
+    console.log('Submitted Order ID:', orderId); // Log immediately
+  };
+
   return (
     <>
       {/* Navbar */}
@@ -48,20 +66,26 @@ export default function Page() {
       </section>
 
       {/* Tracking Section */}
-      <section className="w-full h-auto py-8 px-3 md:px-12 lg:px-24 flex items-end md:max-[680px] ">
-        <div className="mt-6 flex flex-col md:flex-col gap-4  items-start w-full max-w-lg">
-          <label className="text-lg md:text-xl lg:text-2xl font-bold">
-            Tracking Number
-          </label>
-          <input
-            type="text"
-            placeholder="(Eg. TRX-0001)"
-            className="w-[95%] md:w-[95%] h-12 md:h-16 md:text-lg lg:text-xl px-4 py-2 rounded-lg border border-gray-300 text-black"
-          />
-        </div>
-        <button className="text-sm md:w-auto md:h-16 md:text-lg lg:text-xl px-2 py-3 md:px-6 md:py-3 bg-[#e30613] hover:bg-[#c20410] rounded-lg text-white font-bold text-nowrap">
-          Track Order
-        </button>
+      <section className="w-full h-auto py-8 px-3 md:px-12 lg:px-24  bg-white ">
+        <form onSubmit={handleSubmit} className="flex items-end md:max-[680px]">
+          <div className="mt-6 flex flex-col md:flex-col gap-4  items-start w-full max-w-lg">
+            <label className="text-lg md:text-xl lg:text-2xl font-bold">
+              Tracking Number
+            </label>
+            <input
+              type="text"
+              placeholder="(Eg. TRX-0001)"
+              className="w-[95%] md:w-[95%] h-12 md:h-16 md:text-lg lg:text-xl px-4 py-2 rounded-lg border border-gray-300 text-black"
+              onChange={(e) => setOrderId(e.target.value)}
+            />
+          </div>
+          <button
+            type="submit"
+            className="text-sm md:w-auto md:h-16 md:text-lg lg:text-xl px-2 py-3 md:px-6 md:py-3 bg-[#e30613] hover:bg-[#c20410] rounded-lg text-white font-bold text-nowrap"
+          >
+            Track Order
+          </button>
+        </form>
       </section>
 
       {/* Footer */}
