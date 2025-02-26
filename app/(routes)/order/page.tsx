@@ -101,6 +101,7 @@ export default function Page() {
               className="w-[95%] md:w-[95%] h-12 md:h-16 md:text-lg lg:text-xl px-4 py-2 rounded-lg border border-gray-300 text-black"
               onChange={(e) => setOrderId(e.target.value)}
               value={orderId}
+              required
             />
           </div>
           <button
