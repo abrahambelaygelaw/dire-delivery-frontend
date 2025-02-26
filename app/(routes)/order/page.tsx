@@ -12,6 +12,7 @@ export default function Page() {
   const [orderId, setOrderId] = useState('');
   const [transactionid, setTransactionid] = useState<string>('');
   const [anOrder, setanOrder] = useState<Order | null>(null);
+  const [found, setFound] = useState<boolean>(true);
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -19,6 +20,7 @@ export default function Page() {
       console.log('Order ID cannot be empty');
       return;
     }
+    setTransactionid('');
     setTransactionid(orderId); // Update state
     console.log('Submitted Order ID:', orderId); // Log immediately
     setOrderId(''); // Clear the input field
@@ -33,8 +35,10 @@ export default function Page() {
         if (response.length > 0) {
           console.log('response:', response[0]);
           setanOrder(response[0]);
+          setFound(true);
         } else {
           console.log('No data found for the given Order ID');
+          setFound(false);
         }
       };
       fetchtrackData();
@@ -107,7 +111,14 @@ export default function Page() {
           </button>
         </form>
       </section>
-      {anOrder && <h1>{anOrder.description}</h1>}
+      {transactionid ? (
+        found && anOrder ? (
+          <h1>{anOrder.description}</h1>
+        ) : (
+          <h1>No item found</h1>
+        )
+      ) : null}
+
       {/* Footer */}
       <footer className="w-full h-full px-6 md:px-16 py-8 bg-[#060a87] text-white flex flex-col md:flex-row justify-between items-center text-center md:text-left">
         <div className="flex flex-col items-center md:items-start">
