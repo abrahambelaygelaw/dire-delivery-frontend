@@ -65,7 +65,7 @@ export default function Page() {
       </section>
 
       {/* Footer */}
-      <footer className="w-full px-6 md:px-16 py-8 bg-[#060a87] text-white flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+      <footer className="w-full h-full px-6 md:px-16 py-8 bg-[#060a87] text-white flex flex-col md:flex-row justify-between items-center text-center md:text-left">
         <div className="flex flex-col items-center md:items-start">
           <div className="flex items-center gap-2">
             <Image src={plane} alt="Dire Express" width={40} height={40} />
@@ -89,7 +89,7 @@ export default function Page() {
           <FaInstagram className="w-8 h-8" />
         </div>
       </footer>
-      <div className="w-full py-4 bg-[#060a87] text-center text-sm">
+      <div className="w-full py-4 bg-[#060a87] text-center text-white text-sm">
         © 2025 Dire Delivery. All rights reserved | Terms | Privacy
       </div>
     </>
