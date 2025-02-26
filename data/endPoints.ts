@@ -1,3 +1,3 @@
 export const endPoints = {
-  anOrder: 'order',
+  anOrder: 'orders',
 };
