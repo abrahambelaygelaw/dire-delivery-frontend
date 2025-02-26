@@ -5,22 +5,41 @@ import plane from '@/public/Icons/plane.svg';
 import { LuMapPin } from 'react-icons/lu';
 import { FaFacebookF, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
-
+import { TrackOrder } from '@/actions/order';
+import { Order } from '@/types/orderType';
 
 export default function Page() {
   const [orderId, setOrderId] = useState('');
   const [transactionid, setTransactionid] = useState<string>('');
-
-  useEffect(() => {
-    console.log('transactionid:', transactionid);
-
-  }, [transactionid]);
+  const [anOrder, setanOrder] = useState<Order | null>(null);
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    if (!orderId.trim()) {
+      console.log('Order ID cannot be empty');
+      return;
+    }
     setTransactionid(orderId); // Update state
     console.log('Submitted Order ID:', orderId); // Log immediately
+    setOrderId(''); // Clear the input field
   };
+
+  useEffect(() => {
+    if (transactionid) {
+      console.log('transactionid:', transactionid);
+
+      const fetchtrackData = async () => {
+        const response = await TrackOrder({ id: transactionid });
+        if (response.length > 0) {
+          console.log('response:', response[0]);
+          setanOrder(response[0]);
+        } else {
+          console.log('No data found for the given Order ID');
+        }
+      };
+      fetchtrackData();
+    }
+  }, [transactionid]);
 
   return (
     <>
@@ -77,6 +96,7 @@ export default function Page() {
               placeholder="(Eg. TRX-0001)"
               className="w-[95%] md:w-[95%] h-12 md:h-16 md:text-lg lg:text-xl px-4 py-2 rounded-lg border border-gray-300 text-black"
               onChange={(e) => setOrderId(e.target.value)}
+              value={orderId}
             />
           </div>
           <button
@@ -87,7 +107,7 @@ export default function Page() {
           </button>
         </form>
       </section>
-
+      {anOrder && <h1>{anOrder.description}</h1>}
       {/* Footer */}
       <footer className="w-full h-full px-6 md:px-16 py-8 bg-[#060a87] text-white flex flex-col md:flex-row justify-between items-center text-center md:text-left">
         <div className="flex flex-col items-center md:items-start">
