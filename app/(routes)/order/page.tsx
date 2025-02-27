@@ -217,9 +217,9 @@ export default function Page() {
                 ))}
               </div>
             </div>
-            <div className=" w-full md:w-[640px] lg:w-[760px] flex flex-col gap-8 px-4 ">
-              <div className="flex justify-between gap-8">
-                <div className=" w-full max-w-[380px] px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
+            <div className=" w-full md:w-[680px] lg:w-[760px] flex flex-col gap-8  ">
+              <div className="flex justify-between gap-6">
+                <div className=" w-full max-w-[400px] px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
                   <div className="flex items-center gap-1 py-3 border-b-2 border-black ">
                     <FiPackage className="w-8 h-8" />
                     <h1 className="text-xl font-bold">Package Detail</h1>
