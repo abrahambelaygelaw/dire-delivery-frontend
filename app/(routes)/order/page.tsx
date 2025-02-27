@@ -186,8 +186,8 @@ export default function Page() {
           <h1 className="text-[#090909] text-2xl md:text-3xl  font-bold  leading-[33.60px]">
             Tracking Details
           </h1>
-          <div className="flex flex-col lg:flex-row justify-between w-full items-center md:items-center lg:px-0 py-2 gap-12 border ">
-            <div className="mt-8 relative w-full lg:max-w-fit border">
+          <div className="flex flex-col lg:flex-row justify-between w-full items-center md:items-center lg:px-0 py-2 gap-12  ">
+            <div className="mt-8 relative w-full lg:max-w-fit ">
               {/* Connector Line (Adjusts Direction Based on Screen Size) */}
               <div
                 className="h-full absolute bg-gray-200 
@@ -203,7 +203,7 @@ export default function Page() {
                   >
                     {/* Status Icon */}
                     <div
-                      className={`w-20 h-20 rounded-full flex items-center  justify-center z-10 border ${getStatusColor(status.status)}`}
+                      className={`w-20 h-20 rounded-full flex items-center  justify-center z-10  ${getStatusColor(status.status)}`}
                     >
                       {getStatusIcon(status.status)}
                     </div>
