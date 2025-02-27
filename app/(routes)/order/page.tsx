@@ -16,7 +16,7 @@ import { Order } from '@/types/orderType';
 import { Circle } from 'lucide-react';
 import { PiBoxArrowDownBold } from 'react-icons/pi';
 import { TbCircleCheckFilled } from 'react-icons/tb';
-
+import { formatDate } from '@/lib/utils';
 export default function Page() {
   const [orderId, setOrderId] = useState('');
   const [transactionid, setTransactionid] = useState<string>('');
@@ -175,177 +175,200 @@ export default function Page() {
         </section>
         {transactionid ? (
           found && anOrder ? (
-            <h1>{anOrder.description}</h1>
+            <section className="flex flex-col justify-start items-start gap-4 md:gap-8 border-t-2 border-[#060a87] py-6 md:py-12 px-2 lg:px-3  w-full ">
+              <h1>{anOrder.status}</h1>
+
+              <h1 className="text-[#090909] text-2xl md:text-3xl  font-bold  leading-[33.60px]">
+                Tracking Details
+              </h1>
+              <div className="flex flex-col lg:flex-row justify-between w-full items-center md:items-center lg:px-0 py-2 gap-12  ">
+                <div className="mt-8 relative w-full lg:max-w-fit ">
+                  {/* Connector Line (Adjusts Direction Based on Screen Size) */}
+                  <div
+                    className="h-full absolute bg-gray-200 
+                  w-0.5 top-0  bottom-0 left-20
+                  md:w-[64.3%] md:h-0.5 md:left-16 md:top-10 md:mx-10 lg:top-0 lg:w-0.5 lg:h-[90%] lg:mt-6 lg:left-10"
+                  ></div>
+
+                  <div className="relative flex flex-col justify-center w-fit items-center px-10 gap-10 lg:flex-col md:flex-row md:gap-16 md:items-center md:justify-center  ">
+                    {statuses.map((status, index) => (
+                      <div
+                        key={index}
+                        className="relative w-full flex md:flex-col md:items-center md:w-fit md:justify-center md:gap-4 lg:flex-row  "
+                      >
+                        {/* Status Icon */}
+                        <div
+                          className={`w-20 h-20 rounded-full flex items-center  justify-center z-10  ${getStatusColor(status.status)}`}
+                        >
+                          {getStatusIcon(status.status)}
+                        </div>
+
+                        {/* Status Information */}
+                        <div className="flex flex-col w-fit text-center md:text-center md:flex-1 md:justify-center ">
+                          <h3 className="font-bold text-xl w-fit ">{`Status: ${status.status}`}</h3>
+                          <p className="text-sm text-[#4B5563]">
+                            {status.timestamp}
+                          </p>
+                          <div className="text-base text-[#4B5563] font-semibold">
+                            {status.location}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className=" w-full md:w-[680px] lg:w-full flex flex-col gap-8  ">
+                  <div className="flex flex-col lg:flex-row justify-between gap-6">
+                    <div className=" w-full lg:max-w-[400px] px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
+                      <div className="flex items-center gap-1 py-3 border-b-2 border-black ">
+                        <FiPackage className="w-8 h-8" />
+                        <h1 className="text-xl font-bold">Package Detail</h1>
+                      </div>
+                      <div className="py-2 flex flex-col gap-2">
+                        <div className="flex w-full justify-between ">
+                          <h3 className="font-bold">Transaction Detail</h3>
+                          <p className="text-[#71717A]">
+                            {anOrder.transactionId}
+                          </p>
+                        </div>
+                        <div className="flex w-full justify-between">
+                          <h3 className="font-bold">Order date</h3>
+                          <p className="text-[#71717A]">
+                            {formatDate(anOrder.createdAt)}
+                          </p>
+                        </div>
+                        <div
+                          className="
+                  flex
+                  w-full
+                  justify-between
+              "
+                        >
+                          <h3 className="font-bold">Description</h3>
+                          <p className="text-[#71717A]">
+                            {anOrder.description}
+                          </p>
+                        </div>
+                        <div className="flex w-full justify-between">
+                          <h3 className="font-bold">Weight</h3>
+                          <p className="text-[#71717A]">{anOrder.weight}kg</p>
+                        </div>
+                        <div
+                          className="
+                  flex
+                  w-full
+                  justify-between
+              "
+                        >
+                          <h3 className="font-bold">Quantity</h3>
+                          <p className="text-[#71717A]">{anOrder.quantity}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className=" w-full lg:max-w-[380px] px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
+                      <div className="flex items-center gap-1 py-3 border-b-2 border-black ">
+                        <FiPackage className="w-8 h-8" />
+                        <h1 className="text-xl font-bold">Payment Details</h1>
+                      </div>
+                      <div className="py-2 flex flex-col gap-2">
+                        <div className="flex w-full justify-between ">
+                          <h3 className="font-bold">Total Price</h3>
+                          <p className="text-[#71717A]">{anOrder.Price}birr</p>
+                        </div>
+                        <div className="flex w-full justify-between">
+                          <h3 className="font-bold">Payment Method</h3>
+                          <p className="text-[#71717A]">
+                            {anOrder.paymentMethod}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col lg:flex-row justify-between gap-6">
+                    <div className=" w-full lg:max-w-[380px] px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
+                      <div className="flex items-center gap-1 py-3 border-b-2 border-black ">
+                        <FiPackage className="w-8 h-8" />
+                        <h1 className="text-xl font-bold">Sender Detail</h1>
+                      </div>
+                      <div className="py-2 flex flex-col gap-2">
+                        <div className="flex w-full justify-between ">
+                          <h3 className="font-bold">Full Name</h3>
+                          <p className="text-[#71717A]">{anOrder.senderName}</p>
+                        </div>
+                        <div className="flex w-full justify-between">
+                          <h3 className="font-bold">Email</h3>
+                          <p className="text-[#71717A]">
+                            {anOrder.senderEmail}
+                          </p>
+                        </div>
+                        <div
+                          className="
+                  flex
+                  w-full
+                  justify-between
+              "
+                        >
+                          <h3 className="font-bold">Phone Number</h3>
+                          <p className="text-[#71717A]">
+                            {anOrder.senderPhoneNumber}
+                          </p>
+                        </div>
+                        <div className="flex w-full justify-between">
+                          <h3 className="font-bold">Address</h3>
+                          <p className="text-[#71717A]">
+                            {anOrder.senderAddress}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className=" w-full  px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
+                      <div className="flex items-center gap-1 py-3 border-b-2 border-black ">
+                        <FiPackage className="w-8 h-8" />
+                        <h1 className="text-xl font-bold">Receiver Detail</h1>
+                      </div>
+                      <div className="py-2 flex flex-col gap-2">
+                        <div className="flex w-full justify-between ">
+                          <h3 className="font-bold">Full Name</h3>
+                          <p className="text-[#71717A]">
+                            {anOrder.reciverName}
+                          </p>
+                        </div>
+                        <div className="flex w-full justify-between">
+                          <h3 className="font-bold">Email</h3>
+                          <p className="text-[#71717A]">
+                            {anOrder.reciverEmail}
+                          </p>
+                        </div>
+                        <div
+                          className="
+                  flex
+                  w-full
+                  justify-between
+              "
+                        >
+                          <h3 className="font-bold">Phone Number</h3>
+                          <p className="text-[#71717A]">
+                            {anOrder.reciverPhoneNumber}
+                          </p>
+                        </div>
+                        <div className="flex w-full justify-between">
+                          <h3 className="font-bold">Address</h3>
+                          <p className="text-[#71717A]">
+                            {anOrder.reciverAddress}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
           ) : (
             <h1>No item found</h1>
           )
         ) : null}
 
         {/* Order info page */}
-        <section className="flex flex-col justify-start items-start gap-4 md:gap-8 border-t-2 border-[#060a87] py-6 md:py-12 px-2 lg:px-3  w-full ">
-          <h1 className="text-[#090909] text-2xl md:text-3xl  font-bold  leading-[33.60px]">
-            Tracking Details
-          </h1>
-          <div className="flex flex-col lg:flex-row justify-between w-full items-center md:items-center lg:px-0 py-2 gap-12  ">
-            <div className="mt-8 relative w-full lg:max-w-fit ">
-              {/* Connector Line (Adjusts Direction Based on Screen Size) */}
-              <div
-                className="h-full absolute bg-gray-200 
-                  w-0.5 top-0  bottom-0 left-20
-                  md:w-[64.3%] md:h-0.5 md:left-16 md:top-10 md:mx-10 lg:top-0 lg:w-0.5 lg:h-[90%] lg:mt-6 lg:left-10"
-              ></div>
-
-              <div className="relative flex flex-col justify-center w-fit items-center px-10 gap-10 lg:flex-col md:flex-row md:gap-16 md:items-center md:justify-center  ">
-                {statuses.map((status, index) => (
-                  <div
-                    key={index}
-                    className="relative w-full flex md:flex-col md:items-center md:w-fit md:justify-center md:gap-4 lg:flex-row  "
-                  >
-                    {/* Status Icon */}
-                    <div
-                      className={`w-20 h-20 rounded-full flex items-center  justify-center z-10  ${getStatusColor(status.status)}`}
-                    >
-                      {getStatusIcon(status.status)}
-                    </div>
-
-                    {/* Status Information */}
-                    <div className="flex flex-col w-fit text-center md:text-center md:flex-1 md:justify-center ">
-                      <h3 className="font-bold text-xl w-fit ">{`Status: ${status.status}`}</h3>
-                      <p className="text-sm text-[#4B5563]">
-                        {status.timestamp}
-                      </p>
-                      <div className="text-base text-[#4B5563] font-semibold">
-                        {status.location}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className=" w-full md:w-[680px] lg:w-full flex flex-col gap-8  ">
-              <div className="flex flex-col lg:flex-row justify-between gap-6">
-                <div className=" w-full lg:max-w-[400px] px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
-                  <div className="flex items-center gap-1 py-3 border-b-2 border-black ">
-                    <FiPackage className="w-8 h-8" />
-                    <h1 className="text-xl font-bold">Package Detail</h1>
-                  </div>
-                  <div className="py-2 flex flex-col gap-2">
-                    <div className="flex w-full justify-between ">
-                      <h3 className="font-bold">Transaction Detail</h3>
-                      <p className="text-[#71717A]">DET20252</p>
-                    </div>
-                    <div className="flex w-full justify-between">
-                      <h3 className="font-bold">Order date</h3>
-                      <p className="text-[#71717A]">January 25,2025</p>
-                    </div>
-                    <div
-                      className="
-                  flex
-                  w-full
-                  justify-between
-              "
-                    >
-                      <h3 className="font-bold">Description</h3>
-                      <p className="text-[#71717A]">Electronics Package</p>
-                    </div>
-                    <div className="flex w-full justify-between">
-                      <h3 className="font-bold">Weight</h3>
-                      <p className="text-[#71717A]">35 kg</p>
-                    </div>
-                    <div
-                      className="
-                  flex
-                  w-full
-                  justify-between
-              "
-                    >
-                      <h3 className="font-bold">Quantity</h3>
-                      <p className="text-[#71717A]">1</p>
-                    </div>
-                  </div>
-                </div>
-                <div className=" w-full lg:max-w-[380px] px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
-                  <div className="flex items-center gap-1 py-3 border-b-2 border-black ">
-                    <FiPackage className="w-8 h-8" />
-                    <h1 className="text-xl font-bold">Payment Details</h1>
-                  </div>
-                  <div className="py-2 flex flex-col gap-2">
-                    <div className="flex w-full justify-between ">
-                      <h3 className="font-bold">Total Price</h3>
-                      <p className="text-[#71717A]">336.55birr</p>
-                    </div>
-                    <div className="flex w-full justify-between">
-                      <h3 className="font-bold">Payment Method</h3>
-                      <p className="text-[#71717A]">On Delivery</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col lg:flex-row justify-between gap-6">
-                <div className=" w-full lg:max-w-[380px] px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
-                  <div className="flex items-center gap-1 py-3 border-b-2 border-black ">
-                    <FiPackage className="w-8 h-8" />
-                    <h1 className="text-xl font-bold">Sender Detail</h1>
-                  </div>
-                  <div className="py-2 flex flex-col gap-2">
-                    <div className="flex w-full justify-between ">
-                      <h3 className="font-bold">Full Name</h3>
-                      <p className="text-[#71717A]">Jhon Doe</p>
-                    </div>
-                    <div className="flex w-full justify-between">
-                      <h3 className="font-bold">Email</h3>
-                      <p className="text-[#71717A]">JhonnyDoe@gmail.com</p>
-                    </div>
-                    <div
-                      className="
-                  flex
-                  w-full
-                  justify-between
-              "
-                    >
-                      <h3 className="font-bold">Phone Number</h3>
-                      <p className="text-[#71717A]">0972729423</p>
-                    </div>
-                    <div className="flex w-full justify-between">
-                      <h3 className="font-bold">Address</h3>
-                      <p className="text-[#71717A]">Addis Ababa</p>
-                    </div>
-                  </div>
-                </div>
-                <div className=" w-full  px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
-                  <div className="flex items-center gap-1 py-3 border-b-2 border-black ">
-                    <FiPackage className="w-8 h-8" />
-                    <h1 className="text-xl font-bold">Receiver Detail</h1>
-                  </div>
-                  <div className="py-2 flex flex-col gap-2">
-                    <div className="flex w-full justify-between ">
-                      <h3 className="font-bold">Full Name</h3>
-                      <p className="text-[#71717A]">Jhon Doe</p>
-                    </div>
-                    <div className="flex w-full justify-between">
-                      <h3 className="font-bold">Email</h3>
-                      <p className="text-[#71717A]">JhonnyDoe@gmail.com</p>
-                    </div>
-                    <div
-                      className="
-                  flex
-                  w-full
-                  justify-between
-              "
-                    >
-                      <h3 className="font-bold">Phone Number</h3>
-                      <p className="text-[#71717A]">0972729423</p>
-                    </div>
-                    <div className="flex w-full justify-between">
-                      <h3 className="font-bold">Address</h3>
-                      <p className="text-[#71717A]">Addis Ababa</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
       </section>
 
       {/* Footer */}
