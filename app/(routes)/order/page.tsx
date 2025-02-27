@@ -1,9 +1,106 @@
+'use client';
+
 import Image from 'next/image';
 import plane from '@/public/Icons/plane.svg';
 import { LuMapPin } from 'react-icons/lu';
-import { FaFacebookF, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
+import {
+  FaFacebookF,
+  FaLinkedinIn,
+  FaInstagram,
+  FaPlaneDeparture,
+} from 'react-icons/fa';
+import { FiPackage } from 'react-icons/fi';
+import { useState, useEffect } from 'react';
+import { TrackOrder } from '@/actions/order';
+import { Order } from '@/types/orderType';
+import { Circle } from 'lucide-react';
+import { PiBoxArrowDownBold } from 'react-icons/pi';
+import { TbCircleCheckFilled } from 'react-icons/tb';
 
 export default function Page() {
+  const [orderId, setOrderId] = useState('');
+  const [transactionid, setTransactionid] = useState<string>('');
+  const [anOrder, setanOrder] = useState<Order | null>(null);
+  const [found, setFound] = useState<boolean>(true);
+
+  const statuses = [
+    {
+      status: 'ON PENDING',
+      timestamp: '2023/05/17 12:15',
+      location: 'ADDIS ABABA',
+      completed: true,
+    },
+    {
+      status: 'DELIVERED',
+      timestamp: '2023/05/18 13:47',
+      location: 'JIGJIGA',
+      completed: true,
+    },
+    {
+      status: 'PICKED UP',
+      timestamp: '2023/05/19 18:47',
+      location: 'JIGJIGA',
+      completed: true,
+    },
+  ];
+
+  function getStatusColor(status: string): string {
+    switch (status) {
+      case 'ON PENDING':
+        return 'bg-blue-100 text-blue-600';
+      case 'DELIVERED':
+        return 'bg-yellow-100 text-yellow-600';
+      case 'PICKED UP':
+        return 'bg-green-100 text-green-600';
+      default:
+        return 'bg-gray-100 text-gray-600';
+    }
+  }
+
+  function getStatusIcon(status: string) {
+    switch (status) {
+      case 'ON PENDING':
+        return <FaPlaneDeparture className="h-10 w-10" />;
+      case 'DELIVERED':
+        return <PiBoxArrowDownBold className="h-10 w-10" />;
+      case 'PICKED UP':
+        return <TbCircleCheckFilled className="h-16 w-16" />;
+      default:
+        return <Circle className="h-10 w-10" />;
+    }
+  }
+
+  const handleSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    if (!orderId.trim()) {
+      console.log('Order ID cannot be empty');
+      return;
+    }
+    setTransactionid('');
+    setTransactionid(orderId); // Update state
+    console.log('Submitted Order ID:', orderId); // Log immediately
+    setOrderId(''); // Clear the input field
+  };
+
+  useEffect(() => {
+    if (transactionid) {
+      console.log('transactionid:', transactionid);
+
+      const fetchtrackData = async () => {
+        const response = await TrackOrder({ id: transactionid });
+        if (response.length > 0) {
+          console.log('response:', response[0]);
+          setanOrder(response[0]);
+          setFound(true);
+        } else {
+          console.log('No data found for the given Order ID');
+          setFound(false);
+        }
+      };
+      fetchtrackData();
+    }
+  }, [transactionid]);
+
   return (
     <>
       {/* Navbar */}
@@ -47,21 +144,208 @@ export default function Page() {
         <h2 className="text-xl md:text-3xl font-bold">Track Your Package</h2>
       </section>
 
-      {/* Tracking Section */}
-      <section className="w-full h-auto py-8 px-3 md:px-12 lg:px-24 flex items-end md:max-[680px] ">
-        <div className="mt-6 flex flex-col md:flex-col gap-4  items-start w-full max-w-lg">
-          <label className="text-lg md:text-xl lg:text-2xl font-bold">
-            Tracking Number
-          </label>
-          <input
-            type="text"
-            placeholder="(Eg. TRX-0001)"
-            className="w-[95%] md:w-[95%] h-12 md:h-16 md:text-lg lg:text-xl px-4 py-2 rounded-lg border border-gray-300 text-black"
-          />
-        </div>
-        <button className="text-sm md:w-auto md:h-16 md:text-lg lg:text-xl px-2 py-3 md:px-6 md:py-3 bg-[#e30613] hover:bg-[#c20410] rounded-lg text-white font-bold text-nowrap">
-          Track Order
-        </button>
+      {/* middle section */}
+      <section className="py-8 px-4 md:px-10 lg:px-16 flex flex-col gap-8 md:gap-16">
+        {/* Tracking Section */}
+        <section className="w-full h-auto bg-white px-1 md:px-3 lg:px-6 ">
+          <form
+            onSubmit={handleSubmit}
+            className="flex items-end md:max-[680px]"
+          >
+            <div className="mt-6 flex flex-col md:flex-col gap-4  items-start w-full max-w-lg">
+              <label className="text-lg md:text-xl lg:text-2xl font-bold">
+                Tracking Number
+              </label>
+              <input
+                type="text"
+                placeholder="(Eg. TRX-0001)"
+                className="w-[95%] md:w-[95%] h-12 md:h-16 md:text-lg lg:text-xl px-4 py-2 rounded-lg border border-gray-300 text-black"
+                onChange={(e) => setOrderId(e.target.value)}
+                value={orderId}
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              className="text-sm md:w-auto md:h-16 md:text-lg lg:text-xl px-2 py-3 md:px-6 md:py-3 bg-[#e30613] hover:bg-[#c20410] rounded-lg text-white font-bold text-nowrap"
+            >
+              Track Order
+            </button>
+          </form>
+        </section>
+        {transactionid ? (
+          found && anOrder ? (
+            <h1>{anOrder.description}</h1>
+          ) : (
+            <h1>No item found</h1>
+          )
+        ) : null}
+
+        {/* Order info page */}
+        <section className="flex flex-col justify-start items-start gap-4 md:gap-8 border-t-2 border-[#060a87] py-6 md:py-12 px-2 lg:px-3  w-full ">
+          <h1 className="text-[#090909] text-2xl md:text-3xl  font-bold  leading-[33.60px]">
+            Tracking Details
+          </h1>
+          <div className="flex flex-col lg:flex-row justify-between w-full items-center md:items-center lg:px-0 py-2 gap-12 border ">
+            <div className="mt-8 relative w-full lg:max-w-fit border">
+              {/* Connector Line (Adjusts Direction Based on Screen Size) */}
+              <div
+                className="h-full absolute bg-gray-200 
+                  w-0.5 top-0  bottom-0 left-20
+                  md:w-[64.3%] md:h-0.5 md:left-16 md:top-10 md:mx-10 lg:top-0 lg:w-0.5 lg:h-[90%] lg:mt-6 lg:left-10"
+              ></div>
+
+              <div className="relative flex flex-col justify-center w-fit items-center px-10 gap-10 lg:flex-col md:flex-row md:gap-16 md:items-center md:justify-center  ">
+                {statuses.map((status, index) => (
+                  <div
+                    key={index}
+                    className="relative w-full flex md:flex-col md:items-center md:w-fit md:justify-center md:gap-4 lg:flex-row  "
+                  >
+                    {/* Status Icon */}
+                    <div
+                      className={`w-20 h-20 rounded-full flex items-center  justify-center z-10 border ${getStatusColor(status.status)}`}
+                    >
+                      {getStatusIcon(status.status)}
+                    </div>
+
+                    {/* Status Information */}
+                    <div className="flex flex-col w-fit text-center md:text-center md:flex-1 md:justify-center ">
+                      <h3 className="font-bold text-xl w-fit ">{`Status: ${status.status}`}</h3>
+                      <p className="text-sm text-[#4B5563]">
+                        {status.timestamp}
+                      </p>
+                      <div className="text-base text-[#4B5563] font-semibold">
+                        {status.location}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className=" w-full md:w-[680px] lg:w-full flex flex-col gap-8  ">
+              <div className="flex flex-col lg:flex-row justify-between gap-6">
+                <div className=" w-full lg:max-w-[400px] px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
+                  <div className="flex items-center gap-1 py-3 border-b-2 border-black ">
+                    <FiPackage className="w-8 h-8" />
+                    <h1 className="text-xl font-bold">Package Detail</h1>
+                  </div>
+                  <div className="py-2 flex flex-col gap-2">
+                    <div className="flex w-full justify-between ">
+                      <h3 className="font-bold">Transaction Detail</h3>
+                      <p className="text-[#71717A]">DET20252</p>
+                    </div>
+                    <div className="flex w-full justify-between">
+                      <h3 className="font-bold">Order date</h3>
+                      <p className="text-[#71717A]">January 25,2025</p>
+                    </div>
+                    <div
+                      className="
+                  flex
+                  w-full
+                  justify-between
+              "
+                    >
+                      <h3 className="font-bold">Description</h3>
+                      <p className="text-[#71717A]">Electronics Package</p>
+                    </div>
+                    <div className="flex w-full justify-between">
+                      <h3 className="font-bold">Weight</h3>
+                      <p className="text-[#71717A]">35 kg</p>
+                    </div>
+                    <div
+                      className="
+                  flex
+                  w-full
+                  justify-between
+              "
+                    >
+                      <h3 className="font-bold">Quantity</h3>
+                      <p className="text-[#71717A]">1</p>
+                    </div>
+                  </div>
+                </div>
+                <div className=" w-full lg:max-w-[380px] px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
+                  <div className="flex items-center gap-1 py-3 border-b-2 border-black ">
+                    <FiPackage className="w-8 h-8" />
+                    <h1 className="text-xl font-bold">Payment Details</h1>
+                  </div>
+                  <div className="py-2 flex flex-col gap-2">
+                    <div className="flex w-full justify-between ">
+                      <h3 className="font-bold">Total Price</h3>
+                      <p className="text-[#71717A]">336.55birr</p>
+                    </div>
+                    <div className="flex w-full justify-between">
+                      <h3 className="font-bold">Payment Method</h3>
+                      <p className="text-[#71717A]">On Delivery</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col lg:flex-row justify-between gap-6">
+                <div className=" w-full lg:max-w-[380px] px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
+                  <div className="flex items-center gap-1 py-3 border-b-2 border-black ">
+                    <FiPackage className="w-8 h-8" />
+                    <h1 className="text-xl font-bold">Sender Detail</h1>
+                  </div>
+                  <div className="py-2 flex flex-col gap-2">
+                    <div className="flex w-full justify-between ">
+                      <h3 className="font-bold">Full Name</h3>
+                      <p className="text-[#71717A]">Jhon Doe</p>
+                    </div>
+                    <div className="flex w-full justify-between">
+                      <h3 className="font-bold">Email</h3>
+                      <p className="text-[#71717A]">JhonnyDoe@gmail.com</p>
+                    </div>
+                    <div
+                      className="
+                  flex
+                  w-full
+                  justify-between
+              "
+                    >
+                      <h3 className="font-bold">Phone Number</h3>
+                      <p className="text-[#71717A]">0972729423</p>
+                    </div>
+                    <div className="flex w-full justify-between">
+                      <h3 className="font-bold">Address</h3>
+                      <p className="text-[#71717A]">Addis Ababa</p>
+                    </div>
+                  </div>
+                </div>
+                <div className=" w-full  px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
+                  <div className="flex items-center gap-1 py-3 border-b-2 border-black ">
+                    <FiPackage className="w-8 h-8" />
+                    <h1 className="text-xl font-bold">Receiver Detail</h1>
+                  </div>
+                  <div className="py-2 flex flex-col gap-2">
+                    <div className="flex w-full justify-between ">
+                      <h3 className="font-bold">Full Name</h3>
+                      <p className="text-[#71717A]">Jhon Doe</p>
+                    </div>
+                    <div className="flex w-full justify-between">
+                      <h3 className="font-bold">Email</h3>
+                      <p className="text-[#71717A]">JhonnyDoe@gmail.com</p>
+                    </div>
+                    <div
+                      className="
+                  flex
+                  w-full
+                  justify-between
+              "
+                    >
+                      <h3 className="font-bold">Phone Number</h3>
+                      <p className="text-[#71717A]">0972729423</p>
+                    </div>
+                    <div className="flex w-full justify-between">
+                      <h3 className="font-bold">Address</h3>
+                      <p className="text-[#71717A]">Addis Ababa</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </section>
 
       {/* Footer */}
