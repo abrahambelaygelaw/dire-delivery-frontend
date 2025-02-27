@@ -19,6 +19,7 @@ import { LuLayoutGrid } from "react-icons/lu"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
+import { cn } from "@/lib/utils"
 
 // Menu items.
 const items = [
@@ -70,7 +71,7 @@ export function AppSidebar() {
             {items.map((item) => (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton asChild>
-                  <a href={item.url} className="h-[50px] flex gap-2.5 !p-0 bg-red">
+                  <a href={item.url} className={cn("h-[50px] flex gap-2.5 p-0", selectedItem == item.title && "bg-[#030661] px-3")}>
                     <item.icon />
                     <span className="text-sm font-bold">{item.title}</span>
                   </a>
