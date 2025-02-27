@@ -1,7 +1,5 @@
 "use client"
 
-import { ClipboardList, Settings, UserCog, Users } from "lucide-react"
-
 import {
   Sidebar,
   SidebarContent,
@@ -19,42 +17,14 @@ import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import { GrCircleQuestion } from "react-icons/gr"
 import { LuLayoutGrid } from "react-icons/lu"
-
-// Menu items.
-const items = [
-  {
-    title: "Employees",
-    url: "/admin/employees",
-    icon: Users,
-  },
-  {
-    title: "Admins",
-    url: "/admin/admins",
-    icon: UserCog,
-  },
-  {
-    title: "Orders",
-    url: "/admin/orders",
-    icon: ClipboardList,
-  },
-  {
-    title: "Settings",
-    url: "/admin/settings",
-    icon: Settings,
-  },
-  {
-    title: "Dashboard",
-    url: "/admin",
-    icon: "",
-  }
-]
+import { menuItems } from "@/data/layout"
 
 export function AppSidebar() {
   const pathname = usePathname();
   const [selectedItem, setSelectedItem] = useState("");
 
   useEffect(() => {
-    const matchedItem = items.find((item) => pathname == item.url);
+    const matchedItem = menuItems.find((item) => pathname == item.url);
     setSelectedItem(matchedItem ? matchedItem.title : "");
   }, [pathname]); // Re-run when pathname changes
 
@@ -71,7 +41,7 @@ export function AppSidebar() {
         <SidebarGroup className="p-0">
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
+              {menuItems.map((item) => (
                 item.title !== "Dashboard" && <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
                     <a href={item.url} className={cn("h-[50px] flex gap-2.5 p-0", selectedItem == item.title && "bg-[#030661] px-3")}>
