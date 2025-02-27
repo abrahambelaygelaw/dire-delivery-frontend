@@ -20,7 +20,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { GiHamburgerMenu } from "react-icons/gi"
-import { Sheet, SheetContent } from "../shared/custom-shadcn.tsx/custom-sheet-sidebar"
+import { Sheet, SheetContent, SheetTitle } from "../shared/custom-shadcn.tsx/custom-sheet-sidebar"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
@@ -198,6 +198,9 @@ const Sidebar = React.forwardRef<
     if (isMobile) {
       return (
         <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
+          <SheetTitle className="sr-only">
+            SideBar
+          </SheetTitle>
           <SheetContent
             data-sidebar="sidebar"
             data-mobile="true"

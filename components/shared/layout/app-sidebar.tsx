@@ -57,7 +57,6 @@ export function AppSidebar() {
   useEffect(() => {
     const matchedItem = items.find((item) => pathname == item.url);
     setSelectedItem(matchedItem ? matchedItem.title : "");
-    console.log("item", matchedItem)
   }, [pathname]); // Re-run when pathname changes
 
   return (
