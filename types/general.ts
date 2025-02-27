@@ -1,3 +1,3 @@
 interface BaseLayoutProps {
-    children: React.ReactNode;
-  }
+  children: React.ReactNode;
+}

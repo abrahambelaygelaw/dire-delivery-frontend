@@ -1,26 +1,24 @@
 "use client"
 
-import { Calendar, Home, Inbox, Search, Settings, Users, UserCog, ClipboardList } from "lucide-react"
+import { ClipboardList, Settings, UserCog, Users } from "lucide-react"
 
 import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
-  SidebarMenuItem,
+  SidebarMenuItem
 } from "@/components/ui/sidebar"
 import Image from "next/image"
 
-import direLogo from "@/public/dire-logo.svg"
-import { LuLayoutGrid } from "react-icons/lu"
-import Link from "next/link"
-import { useEffect, useState } from "react"
-import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
+import direLogo from "@/public/dire-logo.svg"
+import { usePathname } from "next/navigation"
+import { useEffect, useState } from "react"
 import { GrCircleQuestion } from "react-icons/gr"
+import { LuLayoutGrid } from "react-icons/lu"
 
 // Menu items.
 const items = [

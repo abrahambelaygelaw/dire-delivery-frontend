@@ -1,15 +1,9 @@
 "use client"
 
-import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { VariantProps, cva } from "class-variance-authority"
-import { PanelLeft } from "lucide-react"
-import { LuMenu } from "react-icons/lu";
-import { FiMenu } from "react-icons/fi";
+import * as React from "react"
 
-import { useIsMobile } from "@/hooks/use-mobile"
-import { cn } from "@/lib/utils"
-import { Button } from "../shared/custom-shadcn.tsx/custom-button-sidebar"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -19,7 +13,10 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { useIsMobile } from "@/hooks/use-mobile"
+import { cn } from "@/lib/utils"
 import { GiHamburgerMenu } from "react-icons/gi"
+import { Button } from "../shared/custom-shadcn.tsx/custom-button-sidebar"
 import { Sheet, SheetContent, SheetTitle } from "../shared/custom-shadcn.tsx/custom-sheet-sidebar"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
@@ -765,5 +762,6 @@ export {
   SidebarRail,
   SidebarSeparator,
   SidebarTrigger,
-  useSidebar,
+  useSidebar
 }
+

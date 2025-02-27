@@ -1,6 +1,6 @@
-import { SidebarTrigger } from "@/components/ui/sidebar"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { LuChevronDown, LuMenu } from "react-icons/lu"
+import { SidebarTrigger } from "@/components/ui/sidebar"
+import { LuChevronDown } from "react-icons/lu"
 
 
 function Header() {
