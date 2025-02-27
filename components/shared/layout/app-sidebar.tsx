@@ -20,6 +20,7 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
+import { GrCircleQuestion } from "react-icons/gr"
 
 // Menu items.
 const items = [
@@ -85,6 +86,10 @@ export function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+        <a href="/admin/help-center" className="flex mt-auto items-center gap-2.5">
+          <GrCircleQuestion stroke="#A0AEC0" size={20}/>
+          <div className="font-bold text-sm">Help Center</div>
+        </a>
       </SidebarContent>
     </Sidebar>
   )
