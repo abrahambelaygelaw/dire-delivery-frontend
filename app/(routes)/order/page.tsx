@@ -25,7 +25,7 @@ export default function Page() {
 
   const statuses = [
     {
-      status: 'PENDING',
+      status: 'ON PENDING',
       timestamp: '2023/05/17 12:15',
       location: 'ADDIS ABABA',
       completed: true,
@@ -46,7 +46,7 @@ export default function Page() {
 
   function getStatusColor(status: string): string {
     switch (status) {
-      case 'PENDING':
+      case 'ON PENDING':
         return 'bg-blue-100 text-blue-600';
       case 'DELIVERED':
         return 'bg-yellow-100 text-yellow-600';
@@ -59,7 +59,7 @@ export default function Page() {
 
   function getStatusIcon(status: string) {
     switch (status) {
-      case 'PENDING':
+      case 'ON PENDING':
         return <FaPlaneDeparture className="h-10 w-10" />;
       case 'DELIVERED':
         return <PiBoxArrowDownBold className="h-10 w-10" />;
@@ -145,7 +145,7 @@ export default function Page() {
       </section>
 
       {/* middle section */}
-      <section className="py-8 px-4 md:px-12 lg:px-24 flex flex-col gap-8 md:gap-16">
+      <section className="py-8 px-4 md:px-10 lg:px-16 flex flex-col gap-8 md:gap-16">
         {/* Tracking Section */}
         <section className="w-full h-auto bg-white px-1 md:px-3 lg:px-6 ">
           <form
@@ -182,44 +182,49 @@ export default function Page() {
         ) : null}
 
         {/* Order info page */}
-        <section className="flex flex-col justify-start items-start gap-4 md:gap-8 border-t-2 border-[#060a87] py-6 md:py-12 px-3 md:px-6 w-full ">
+        <section className="flex flex-col justify-start items-start gap-4 md:gap-8 border-t-2 border-[#060a87] py-6 md:py-12 px-2 lg:px-3  w-full ">
           <h1 className="text-[#090909] text-2xl md:text-3xl  font-bold  leading-[33.60px]">
             Tracking Details
           </h1>
-          <div className="flex justify-between w-full items-start px-6 pr-16 py-2">
-            <div className="mt-8 relative w-full max-w-[400px]">
-              <div className="h-full absolute left-10 top-0 bottom-0 w-0.5 bg-gray-200"></div>
-              <div className="space-y-8 relative flex flex-col gap-10">
+          <div className="flex flex-col lg:flex-row justify-between w-full items-center md:items-center lg:px-0 py-2 gap-12 border ">
+            <div className="mt-8 relative w-full lg:max-w-fit border">
+              {/* Connector Line (Adjusts Direction Based on Screen Size) */}
+              <div
+                className="h-full absolute bg-gray-200 
+                  w-0.5 top-0  bottom-0 left-20
+                  md:w-[64.3%] md:h-0.5 md:left-16 md:top-10 md:mx-10 lg:top-0 lg:w-0.5 lg:h-[90%] lg:mt-6 lg:left-10"
+              ></div>
+
+              <div className="relative flex flex-col justify-center w-fit items-center px-10 gap-10 lg:flex-col md:flex-row md:gap-16 md:items-center md:justify-center  ">
                 {statuses.map((status, index) => (
                   <div
                     key={index}
-                    className="flex items-center gap-4 relative "
+                    className="relative w-full flex md:flex-col md:items-center md:w-fit md:justify-center md:gap-4 lg:flex-row  "
                   >
+                    {/* Status Icon */}
                     <div
-                      className={`w-20 h-20 rounded-full flex items-center justify-center z-10 ${getStatusColor(status.status)}`}
+                      className={`w-20 h-20 rounded-full flex items-center  justify-center z-10 border ${getStatusColor(status.status)}`}
                     >
                       {getStatusIcon(status.status)}
                     </div>
-                    <div className="flex-1">
-                      <div className="flex flex-col md:flex-row md:justify-between md:items-center">
-                        <div className="flex flex-col gap-1">
-                          <h3 className="font-bold text-xl">{`Status: ${status.status}`}</h3>
-                          <p className="text-sm text-[#4B5563]">
-                            {status.timestamp}
-                          </p>
-                          <div className="text-base text-[#4B5563] font-semibold">
-                            {status.location}
-                          </div>
-                        </div>
+
+                    {/* Status Information */}
+                    <div className="flex flex-col w-fit text-center md:text-center md:flex-1 md:justify-center ">
+                      <h3 className="font-bold text-xl w-fit ">{`Status: ${status.status}`}</h3>
+                      <p className="text-sm text-[#4B5563]">
+                        {status.timestamp}
+                      </p>
+                      <div className="text-base text-[#4B5563] font-semibold">
+                        {status.location}
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-            <div className=" w-full md:w-[680px] lg:w-[760px] flex flex-col gap-8  ">
-              <div className="flex justify-between gap-6">
-                <div className=" w-full max-w-[400px] px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
+            <div className=" w-full md:w-[680px] lg:w-full flex flex-col gap-8  ">
+              <div className="flex flex-col lg:flex-row justify-between gap-6">
+                <div className=" w-full lg:max-w-[400px] px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
                   <div className="flex items-center gap-1 py-3 border-b-2 border-black ">
                     <FiPackage className="w-8 h-8" />
                     <h1 className="text-xl font-bold">Package Detail</h1>
@@ -259,7 +264,7 @@ export default function Page() {
                     </div>
                   </div>
                 </div>
-                <div className=" w-full max-w-[380px] px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
+                <div className=" w-full lg:max-w-[380px] px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
                   <div className="flex items-center gap-1 py-3 border-b-2 border-black ">
                     <FiPackage className="w-8 h-8" />
                     <h1 className="text-xl font-bold">Payment Details</h1>
@@ -276,8 +281,8 @@ export default function Page() {
                   </div>
                 </div>
               </div>
-              <div className="flex justify-between gap-8">
-                <div className=" w-full max-w-[380px] px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
+              <div className="flex flex-col lg:flex-row justify-between gap-6">
+                <div className=" w-full lg:max-w-[380px] px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
                   <div className="flex items-center gap-1 py-3 border-b-2 border-black ">
                     <FiPackage className="w-8 h-8" />
                     <h1 className="text-xl font-bold">Sender Detail</h1>
@@ -307,7 +312,7 @@ export default function Page() {
                     </div>
                   </div>
                 </div>
-                <div className=" w-full max-w-[380px] px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
+                <div className=" w-full  px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
                   <div className="flex items-center gap-1 py-3 border-b-2 border-black ">
                     <FiPackage className="w-8 h-8" />
                     <h1 className="text-xl font-bold">Receiver Detail</h1>
