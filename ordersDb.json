@@ -18,11 +18,14 @@
       "statuses": {
         "pending": {
           "type": "pending",
-          "date": "2021-01-01T12:00:00"
+          "date": "2021-01-01T12:00:00",
+          "location": "Detroit, MI"
         }
       },
       "senderPhoneNumber": "+251911234567",
-      "reciverPhoneNumber": "+251711234567"
+      "reciverPhoneNumber": "+251711234567",
+      "senderEmail": "john.doe@example.com",
+      "reciverEmail": "jane.doe@example.com"
     },
     {
       "id": 2,
@@ -42,15 +45,19 @@
       "statuses": {
         "pending": {
           "type": "pending",
-          "date": "2021-01-01T12:00:00"
+          "date": "2021-01-01T12:00:00",
+          "location": "Chicago, IL"
         },
         "delivered": {
           "type": "delivered",
-          "date": "2021-01-01T12:00:00"
+          "date": "2021-01-01T12:00:00",
+          "location": "Los Angeles, CA"
         }
       },
       "senderPhoneNumber": "+251912345678",
-      "reciverPhoneNumber": "+251712345678"
+      "reciverPhoneNumber": "+251712345678",
+      "senderEmail": "alice.smith@example.com",
+      "reciverEmail": "bob.johnson@example.com"
     },
     {
       "id": 3,
@@ -70,15 +77,19 @@
       "statuses": {
         "pending": {
           "type": "pending",
-          "date": "2021-01-01T12:00:00"
+          "date": "2021-01-01T12:00:00",
+          "location": "Houston, TX"
         },
         "delivered": {
           "type": "delivered",
-          "date": "2021-01-01T12:00:00"
+          "date": "2021-01-01T12:00:00",
+          "location": "San Francisco, CA"
         }
       },
       "senderPhoneNumber": "+251913456789",
-      "reciverPhoneNumber": "+251713456789"
+      "reciverPhoneNumber": "+251713456789",
+      "senderEmail": "charlie.brown@example.com",
+      "reciverEmail": "lucy.vanpelt@example.com"
     },
     {
       "id": 4,
@@ -98,11 +109,14 @@
       "statuses": {
         "pending": {
           "type": "pending",
-          "date": "2021-01-01T12:00:00"
+          "date": "2021-01-01T12:00:00",
+          "location": "Phoenix, AZ"
         }
       },
       "senderPhoneNumber": "+251914567890",
-      "reciverPhoneNumber": "+251714567890"
+      "reciverPhoneNumber": "+251714567890",
+      "senderEmail": "david.wilson@example.com",
+      "reciverEmail": "emma.thomas@example.com"
     },
     {
       "id": 5,
@@ -122,15 +136,19 @@
       "statuses": {
         "pending": {
           "type": "pending",
-          "date": "2021-01-01T12:00:00"
+          "date": "2021-01-01T12:00:00",
+          "location": "Philadelphia, PA"
         },
         "delivered": {
           "type": "delivered",
-          "date": "2021-01-01T12:00:00"
+          "date": "2021-01-01T12:00:00",
+          "location": "San Diego, CA"
         }
       },
       "senderPhoneNumber": "+251915678901",
-      "reciverPhoneNumber": "+251715678901"
+      "reciverPhoneNumber": "+251715678901",
+      "senderEmail": "ethan.martinez@example.com",
+      "reciverEmail": "olivia.garcia@example.com"
     },
     {
       "id": 6,
@@ -140,15 +158,19 @@
       "statuses": {
         "pending": {
           "type": "pending",
-          "date": "2021-01-01T12:00:00"
+          "date": "2021-01-01T12:00:00",
+          "location": "unknown"
         },
         "delivered": {
           "type": "delivered",
-          "date": "2021-01-01T12:00:00"
+          "date": "2021-01-01T12:00:00",
+          "location": "unknown"
         }
       },
       "senderPhoneNumber": "+251911234567",
-      "reciverPhoneNumber": "+251711234567"
+      "reciverPhoneNumber": "+251711234567",
+      "senderEmail": "unknown@example.com",
+      "reciverEmail": "unknown@example.com"
     },
     {
       "id": 7,
@@ -168,15 +190,14 @@
       "statuses": {
         "pending": {
           "type": "pending",
-          "date": "2021-01-01T12:00:00"
-        },
-        "delivered": {
-          "type": "delivered",
-          "date": "2021-01-01T12:00:00"
+          "date": "2021-01-01T12:00:00",
+          "location": "San Jose, CA"
         }
       },
       "senderPhoneNumber": "+251911234567",
-      "reciverPhoneNumber": "+251711234567"
+      "reciverPhoneNumber": "+251711234567",
+      "senderEmail": "ivy.walker@example.com",
+      "reciverEmail": "jack.hall@example.com"
     },
     {
       "id": 8,
@@ -196,19 +217,24 @@
       "statuses": {
         "pending": {
           "type": "pending",
-          "date": "2021-01-01T12:00:00"
+          "date": "2021-01-01T12:00:00",
+          "location": "Jacksonville, FL"
         },
         "delivered": {
           "type": "delivered",
-          "date": "2021-01-01T12:00:00"
+          "date": "2021-01-01T12:00:00",
+          "location": "Fort Worth, TX"
         },
         "pickedUp": {
           "type": "delivered",
-          "date": "2021-01-01T12:00:00"
+          "date": "2021-01-01T12:00:00",
+          "location": "Fort Worth, TX"
         }
       },
       "senderPhoneNumber": "+251911234567",
-      "reciverPhoneNumber": "+251711234567"
+      "reciverPhoneNumber": "+251711234567",
+      "senderEmail": "kevin.young@example.com",
+      "reciverEmail": "laura.harris@example.com"
     },
     {
       "id": 9,
@@ -228,15 +254,19 @@
       "statuses": {
         "pending": {
           "type": "pending",
-          "date": "2021-01-01T12:00:00"
+          "date": "2021-01-01T12:00:00",
+          "location": "Columbus, OH"
         },
         "delivered": {
           "type": "delivered",
-          "date": "2021-01-01T12:00:00"
+          "date": "2021-01-01T12:00:00",
+          "location": "Charlotte, NC"
         }
       },
       "senderPhoneNumber": "+251911234567",
-      "reciverPhoneNumber": "+251711234567"
+      "reciverPhoneNumber": "+251711234567",
+      "senderEmail": "liam.king@example.com",
+      "reciverEmail": "mia.scott@example.com"
     },
     {
       "id": 10,
@@ -256,11 +286,14 @@
       "statuses": {
         "pending": {
           "type": "pending",
-          "date": "2021-01-01T12:00:00"
+          "date": "2021-01-01T12:00:00",
+          "location": "Indianapolis, IN"
         }
       },
       "senderPhoneNumber": "+251911234567",
-      "reciverPhoneNumber": "+251711234567"
+      "reciverPhoneNumber": "+251711234567",
+      "senderEmail": "noah.wright@example.com",
+      "reciverEmail": "sophia.green@example.com"
     },
     {
       "id": 11,
@@ -280,19 +313,24 @@
       "statuses": {
         "pending": {
           "type": "pending",
-          "date": "2021-01-01T12:00:00"
+          "date": "2021-01-01T12:00:00",
+          "location": "San Francisco, CA"
         },
         "delivered": {
           "type": "delivered",
-          "date": "2021-01-01T12:00:00"
+          "date": "2021-01-01T12:00:00",
+          "location": "Las Vegas, NV"
         },
         "pickedUp": {
           "type": "delivered",
-          "date": "2021-01-01T12:00:00"
+          "date": "2021-01-01T12:00:00",
+          "location": "Las Vegas, NV"
         }
       },
       "senderPhoneNumber": "+251911234567",
-      "reciverPhoneNumber": "+251711234567"
+      "reciverPhoneNumber": "+251711234567",
+      "senderEmail": "olivia.brown@example.com",
+      "reciverEmail": "william.davis@example.com"
     }
   ]
 }
