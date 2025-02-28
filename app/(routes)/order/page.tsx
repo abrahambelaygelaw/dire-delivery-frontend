@@ -7,10 +7,10 @@ import { FaFacebookF, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import { TrackOrder } from '@/actions/order';
 import { Order } from '@/types/orderType';
-
+import SearchBar from '@/components/trackorder/serachBar';
 import { orderStatus } from '@/types/orderStatus';
 import Tracking from '@/components/trackorder/tracking';
-
+import TrackHero from '@/components/trackorder/trackHero';
 export default function Page() {
   const [orderId, setOrderId] = useState('');
   const [transactionid, setTransactionid] = useState<string>('');
@@ -82,49 +82,18 @@ export default function Page() {
       </nav>
 
       {/* Hero Section */}
-      <section className="w-full h-[320px] md:h-[720px] px-6  lg:px-[120px] py-[183px] bg-[linear-gradient(to_right,_rgba(0,0,0,0.7),rgba(0,0,0,0)),url('/images/track-order-banner.jpg')] flex-col justify-center items-start gap-4 inline-flex overflow-hidden bg-cover bg-center bg-no-repeat md:bg-cover">
-        <div className="w-64 md:w-[646px] text-white text-2xl md:text-[64px] font-extrabold font-['Manrope'] md:leading-tight">
-          Fast. Reliable. Delivered with Care.
-        </div>
-        <div className="md:w-[590px]">
-          <span className="text-white text-wrap text-lg md:text-[28px] font-light font-['Manrope']">
-            Trust Dire Delivery to bring your packages home—on time, every time
-          </span>
-        </div>
-      </section>
+      <TrackHero />
       <section className=" bg-[#060a87] text-white py-4 md:py-8 flex justify-center items-center ">
         <h2 className="text-xl md:text-3xl font-bold">Track Your Package</h2>
       </section>
       {/* middle section */}
       <section className="py-8 px-4 md:px-10 lg:px-16 flex flex-col gap-8 md:gap-16">
         {/* Tracking Section */}
-        <section className="w-full h-auto bg-white px-1 md:px-3 lg:px-6 ">
-          <form
-            onSubmit={handleSubmit}
-            className="flex items-end md:max-[680px]"
-          >
-            <div className="mt-6 flex flex-col md:flex-col gap-4  items-start w-full max-w-lg">
-              <label className="text-lg md:text-xl lg:text-2xl font-bold">
-                Tracking Number
-              </label>
-              <input
-                type="text"
-                placeholder="(Eg. TRX-0001)"
-                className="w-[95%] md:w-[95%] h-12 md:h-16 md:text-lg lg:text-xl px-4 py-2 rounded-lg border border-gray-300 text-black"
-                onChange={(e) => setOrderId(e.target.value)}
-                value={orderId}
-                required
-              />
-            </div>
-            <button
-              type="submit"
-              className="text-sm md:w-auto md:h-16 md:text-lg lg:text-xl px-2 py-3 md:px-6 md:py-3 bg-[#e30613] hover:bg-[#c20410] rounded-lg text-white font-bold text-nowrap"
-            >
-              Track Order
-            </button>
-          </form>
-        </section>
-
+        <SearchBar
+          handleSubmit={handleSubmit}
+          orderId={orderId}
+          setOrderId={setOrderId}
+        />
         <Tracking
           transactionid={transactionid}
           loading={loading}
