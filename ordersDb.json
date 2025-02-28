@@ -226,7 +226,7 @@
           "location": "Fort Worth, TX"
         },
         "pickedUp": {
-          "type": "delivered",
+          "type": "picked up",
           "date": "2021-01-01T12:00:00",
           "location": "Fort Worth, TX"
         }
@@ -322,7 +322,7 @@
           "location": "Las Vegas, NV"
         },
         "pickedUp": {
-          "type": "delivered",
+          "type": "picked up",
           "date": "2021-01-01T12:00:00",
           "location": "Las Vegas, NV"
         }

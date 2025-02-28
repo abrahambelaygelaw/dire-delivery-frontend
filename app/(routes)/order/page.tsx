@@ -17,40 +17,41 @@ import { Circle } from 'lucide-react';
 import { PiBoxArrowDownBold } from 'react-icons/pi';
 import { TbCircleCheckFilled } from 'react-icons/tb';
 import { formatDate } from '@/lib/utils';
+import { orderStatus } from '@/types/orderStatus';
 export default function Page() {
   const [orderId, setOrderId] = useState('');
   const [transactionid, setTransactionid] = useState<string>('');
   const [anOrder, setanOrder] = useState<Order | null>(null);
   const [found, setFound] = useState<boolean>(true);
-
-  const statuses = [
-    {
-      status: 'ON PENDING',
-      timestamp: '2023/05/17 12:15',
-      location: 'ADDIS ABABA',
-      completed: true,
-    },
-    {
-      status: 'DELIVERED',
-      timestamp: '2023/05/18 13:47',
-      location: 'JIGJIGA',
-      completed: true,
-    },
-    {
-      status: 'PICKED UP',
-      timestamp: '2023/05/19 18:47',
-      location: 'JIGJIGA',
-      completed: true,
-    },
-  ];
+  const [statuses, setStatuses] = useState<orderStatus[]>([]);
+  // const statuses = [
+  //   {
+  //     status: 'ON PENDING',
+  //     timestamp: '2023/05/17 12:15',
+  //     location: 'ADDIS ABABA',
+  //     completed: true,
+  //   },
+  //   {
+  //     status: 'DELIVERED',
+  //     timestamp: '2023/05/18 13:47',
+  //     location: 'JIGJIGA',
+  //     completed: true,
+  //   },
+  //   {
+  //     status: 'PICKED UP',
+  //     timestamp: '2023/05/19 18:47',
+  //     location: 'JIGJIGA',
+  //     completed: true,
+  //   },
+  // ];
 
   function getStatusColor(status: string): string {
     switch (status) {
-      case 'ON PENDING':
+      case 'pending':
         return 'bg-blue-100 text-blue-600';
-      case 'DELIVERED':
+      case 'delivered':
         return 'bg-yellow-100 text-yellow-600';
-      case 'PICKED UP':
+      case 'picked up':
         return 'bg-green-100 text-green-600';
       default:
         return 'bg-gray-100 text-gray-600';
@@ -59,11 +60,11 @@ export default function Page() {
 
   function getStatusIcon(status: string) {
     switch (status) {
-      case 'ON PENDING':
+      case 'pending':
         return <FaPlaneDeparture className="h-10 w-10" />;
-      case 'DELIVERED':
+      case 'delivered':
         return <PiBoxArrowDownBold className="h-10 w-10" />;
-      case 'PICKED UP':
+      case 'picked up':
         return <TbCircleCheckFilled className="h-16 w-16" />;
       default:
         return <Circle className="h-10 w-10" />;
@@ -91,6 +92,7 @@ export default function Page() {
         if (response.length > 0) {
           console.log('response:', response[0]);
           setanOrder(response[0]);
+          setStatuses(Object.values(response[0].statuses));
           setFound(true);
         } else {
           console.log('No data found for the given Order ID');
@@ -100,7 +102,6 @@ export default function Page() {
       fetchtrackData();
     }
   }, [transactionid]);
-
   return (
     <>
       {/* Navbar */}
@@ -143,7 +144,6 @@ export default function Page() {
       <section className=" bg-[#060a87] text-white py-4 md:py-8 flex justify-center items-center ">
         <h2 className="text-xl md:text-3xl font-bold">Track Your Package</h2>
       </section>
-
       {/* middle section */}
       <section className="py-8 px-4 md:px-10 lg:px-16 flex flex-col gap-8 md:gap-16">
         {/* Tracking Section */}
@@ -176,38 +176,36 @@ export default function Page() {
         {transactionid ? (
           found && anOrder ? (
             <section className="flex flex-col justify-start items-start gap-4 md:gap-8 border-t-2 border-[#060a87] py-6 md:py-12 px-2 lg:px-3  w-full ">
-              <h1>{anOrder.status}</h1>
-
               <h1 className="text-[#090909] text-2xl md:text-3xl  font-bold  leading-[33.60px]">
                 Tracking Details
               </h1>
-              <div className="flex flex-col lg:flex-row justify-between w-full items-center md:items-center lg:px-0 py-2 gap-12  ">
+              <div className="flex flex-col lg:flex-row justify-between w-full items-center md:items-start lg:px-0 py-2 gap-12  ">
                 <div className="mt-8 relative w-full lg:max-w-fit ">
                   {/* Connector Line (Adjusts Direction Based on Screen Size) */}
                   <div
-                    className="h-full absolute bg-gray-200 
+                    className="h-full absolute bg-gray-200
                   w-0.5 top-0  bottom-0 left-20
                   md:w-[64.3%] md:h-0.5 md:left-16 md:top-10 md:mx-10 lg:top-0 lg:w-0.5 lg:h-[90%] lg:mt-6 lg:left-10"
                   ></div>
 
                   <div className="relative flex flex-col justify-center w-fit items-center px-10 gap-10 lg:flex-col md:flex-row md:gap-16 md:items-center md:justify-center  ">
-                    {statuses.map((status, index) => (
+                    {statuses?.map((status, index) => (
                       <div
                         key={index}
                         className="relative w-full flex md:flex-col md:items-center md:w-fit md:justify-center md:gap-4 lg:flex-row  "
                       >
                         {/* Status Icon */}
                         <div
-                          className={`w-20 h-20 rounded-full flex items-center  justify-center z-10  ${getStatusColor(status.status)}`}
+                          className={`w-20 h-20 rounded-full flex items-center  justify-center z-10  ${getStatusColor(status.type)}`}
                         >
-                          {getStatusIcon(status.status)}
+                          {getStatusIcon(status.type)}
                         </div>
 
                         {/* Status Information */}
                         <div className="flex flex-col w-fit text-center md:text-center md:flex-1 md:justify-center ">
-                          <h3 className="font-bold text-xl w-fit ">{`Status: ${status.status}`}</h3>
+                          <h3 className="font-bold text-xl w-fit ">{`Status: ${status.type}`}</h3>
                           <p className="text-sm text-[#4B5563]">
-                            {status.timestamp}
+                            {status.date}
                           </p>
                           <div className="text-base text-[#4B5563] font-semibold">
                             {status.location}
@@ -265,7 +263,7 @@ export default function Page() {
                         </div>
                       </div>
                     </div>
-                    <div className=" w-full lg:max-w-[380px] px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
+                    <div className=" w-full lg:max-w-[400px] px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
                       <div className="flex items-center gap-1 py-3 border-b-2 border-black ">
                         <FiPackage className="w-8 h-8" />
                         <h1 className="text-xl font-bold">Payment Details</h1>
@@ -285,7 +283,7 @@ export default function Page() {
                     </div>
                   </div>
                   <div className="flex flex-col lg:flex-row justify-between gap-6">
-                    <div className=" w-full lg:max-w-[380px] px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
+                    <div className=" w-full lg:max-w-[400px] px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
                       <div className="flex items-center gap-1 py-3 border-b-2 border-black ">
                         <FiPackage className="w-8 h-8" />
                         <h1 className="text-xl font-bold">Sender Detail</h1>
@@ -321,7 +319,7 @@ export default function Page() {
                         </div>
                       </div>
                     </div>
-                    <div className=" w-full  px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
+                    <div className=" w-full lg:max-w-[400px]  px-5 py-4  rounded-sm shadow-[1px_1px_6px_0px_rgba(0,0,0,0.25)] border border-[#f2f2f6] flex-col justify-start">
                       <div className="flex items-center gap-1 py-3 border-b-2 border-black ">
                         <FiPackage className="w-8 h-8" />
                         <h1 className="text-xl font-bold">Receiver Detail</h1>
@@ -362,6 +360,7 @@ export default function Page() {
                   </div>
                 </div>
               </div>
+              ;
             </section>
           ) : (
             <h1>No item found</h1>
