@@ -1,9 +1,5 @@
 'use client';
 
-import Image from 'next/image';
-import plane from '@/public/Icons/plane.svg';
-import { LuMapPin } from 'react-icons/lu';
-import { FaFacebookF, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import { TrackOrder } from '@/actions/order';
 import { Order } from '@/types/orderType';
@@ -12,6 +8,7 @@ import { orderStatus } from '@/types/orderStatus';
 import Tracking from '@/components/trackorder/tracking';
 import TrackHero from '@/components/trackorder/trackHero';
 import TrackFooter from '@/components/trackorder/trackFooter';
+import TrackNav from '@/components/trackorder/tracknav';
 
 export default function Page() {
   const [orderId, setOrderId] = useState('');
@@ -58,33 +55,12 @@ export default function Page() {
   return (
     <>
       {/* Navbar */}
-      <nav className="w-full h-[100px] px-2 md:px-12 py-5 bg-[#060a87] backdrop-blur-sm flex justify-between items-center relative">
-        <div className="flex items-center gap-2">
-          <Image src={plane} alt="Dire Express" width={40} height={40} />
-          <div className="text-white text-3xl font-extrabold font-['Manrope']">
-            Dire <span className="text-[#e30613]">Express</span>
-          </div>
-        </div>
-        <div className="flex items-center gap-6">
-          <div className=" hidden md:hidden lg:flex items-center gap-2">
-            <LuMapPin className="text-white w-6 h-6" />
-            <span className="text-white text-lg">
-              Megenaga, Addis Ababa, Ethiopia
-            </span>
-          </div>
-          <div className="hidden md:flex gap-4">
-            <FaFacebookF className="text-white w-6 h-6" />
-            <FaLinkedinIn className="text-white w-6 h-6" />
-            <FaInstagram className="text-white w-6 h-6" />
-          </div>
-          <button className="px-4 py-2 bg-[#e30613] rounded-lg text-white font-bold">
-            Track Order
-          </button>
-        </div>
-      </nav>
+
+      <TrackNav />
 
       {/* Hero Section */}
       <TrackHero />
+      {/* Track Your Package */}
       <section className=" bg-[#060a87] text-white py-4 md:py-8 flex justify-center items-center ">
         <h2 className="text-xl md:text-3xl font-bold">Track Your Package</h2>
       </section>

@@ -12,7 +12,10 @@ export default function SearchBar({
   setOrderId,
 }: props) {
   return (
-    <section className="w-full h-auto bg-white px-1 md:px-3 lg:px-6 ">
+    <section
+      className="w-full h-auto bg-white px-1 md:px-3 lg:px-6 "
+      id="TrackPackage"
+    >
       <form onSubmit={handleSubmit} className="flex items-end md:max-[680px]">
         <div className="mt-6 flex flex-col md:flex-col gap-4  items-start w-full max-w-lg">
           <label className="text-lg md:text-xl lg:text-2xl font-bold">
