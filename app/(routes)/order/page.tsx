@@ -18,12 +18,14 @@ import { PiBoxArrowDownBold } from 'react-icons/pi';
 import { TbCircleCheckFilled } from 'react-icons/tb';
 import { formatDate } from '@/lib/utils';
 import { orderStatus } from '@/types/orderStatus';
+import Loading from '@/components/loading';
 export default function Page() {
   const [orderId, setOrderId] = useState('');
   const [transactionid, setTransactionid] = useState<string>('');
   const [anOrder, setanOrder] = useState<Order | null>(null);
   const [found, setFound] = useState<boolean>(true);
   const [statuses, setStatuses] = useState<orderStatus[]>([]);
+  const [loading, setloading] = useState<boolean>(true);
 
   function getStatusColor(status: string): string {
     switch (status) {
@@ -66,7 +68,10 @@ export default function Page() {
   useEffect(() => {
     if (transactionid) {
       console.log('transactionid:', transactionid);
-
+      setloading(true);
+      setTimeout(() => {
+        setloading(false);
+      }, 3000);
       const fetchtrackData = async () => {
         const response = await TrackOrder({ id: transactionid });
         if (response.length > 0) {
@@ -154,7 +159,11 @@ export default function Page() {
           </form>
         </section>
         {transactionid ? (
-          found && anOrder ? (
+          loading ? (
+            <div className="flex justify-center items-center">
+              <Loading />
+            </div>
+          ) : found && anOrder ? (
             <section className="flex flex-col justify-start items-start gap-4 md:gap-8 border-t-2 border-[#060a87] py-6 md:py-12 px-2 lg:px-3  w-full ">
               <h1 className="text-[#090909] text-2xl md:text-3xl  font-bold  leading-[33.60px]">
                 Tracking Details
@@ -164,8 +173,8 @@ export default function Page() {
                   {/* Connector Line (Adjusts Direction Based on Screen Size) */}
                   <div
                     className="h-full absolute bg-gray-200
-                  w-0.5 top-0  bottom-0 left-20
-                  md:w-[64.3%] md:h-0.5 md:left-16 md:top-10 md:mx-10 lg:top-0 lg:w-0.5 lg:h-[90%] lg:mt-6 lg:left-10"
+                    w-0.5 top-0  bottom-0 left-20
+                    md:w-[64.3%] md:h-0.5 md:left-16 md:top-10 md:mx-10 lg:top-0 lg:w-0.5 lg:h-[90%] lg:mt-6 lg:left-10"
                   ></div>
 
                   <div className="relative flex flex-col justify-center w-fit items-center px-10 gap-10 lg:flex-col md:flex-row md:gap-16 md:items-center md:justify-center  ">
@@ -217,10 +226,10 @@ export default function Page() {
                         </div>
                         <div
                           className="
-                  flex
-                  w-full
-                  justify-between
-              "
+                    flex
+                    w-full
+                    justify-between
+                "
                         >
                           <h3 className="font-bold">Description</h3>
                           <p className="text-[#71717A]">
@@ -233,10 +242,10 @@ export default function Page() {
                         </div>
                         <div
                           className="
-                  flex
-                  w-full
-                  justify-between
-              "
+                    flex
+                    w-full
+                    justify-between
+                "
                         >
                           <h3 className="font-bold">Quantity</h3>
                           <p className="text-[#71717A]">{anOrder.quantity}</p>
@@ -281,10 +290,10 @@ export default function Page() {
                         </div>
                         <div
                           className="
-                  flex
-                  w-full
-                  justify-between
-              "
+                    flex
+                    w-full
+                    justify-between
+                "
                         >
                           <h3 className="font-bold">Phone Number</h3>
                           <p className="text-[#71717A]">
@@ -319,10 +328,10 @@ export default function Page() {
                         </div>
                         <div
                           className="
-                  flex
-                  w-full
-                  justify-between
-              "
+                    flex
+                    w-full
+                    justify-between
+                "
                         >
                           <h3 className="font-bold">Phone Number</h3>
                           <p className="text-[#71717A]">
