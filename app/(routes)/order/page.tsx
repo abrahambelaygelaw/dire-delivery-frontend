@@ -24,26 +24,6 @@ export default function Page() {
   const [anOrder, setanOrder] = useState<Order | null>(null);
   const [found, setFound] = useState<boolean>(true);
   const [statuses, setStatuses] = useState<orderStatus[]>([]);
-  // const statuses = [
-  //   {
-  //     status: 'ON PENDING',
-  //     timestamp: '2023/05/17 12:15',
-  //     location: 'ADDIS ABABA',
-  //     completed: true,
-  //   },
-  //   {
-  //     status: 'DELIVERED',
-  //     timestamp: '2023/05/18 13:47',
-  //     location: 'JIGJIGA',
-  //     completed: true,
-  //   },
-  //   {
-  //     status: 'PICKED UP',
-  //     timestamp: '2023/05/19 18:47',
-  //     location: 'JIGJIGA',
-  //     completed: true,
-  //   },
-  // ];
 
   function getStatusColor(status: string): string {
     switch (status) {
