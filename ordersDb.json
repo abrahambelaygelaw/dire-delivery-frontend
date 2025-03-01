@@ -25,7 +25,8 @@
       "senderPhoneNumber": "+251911234567",
       "reciverPhoneNumber": "+251711234567",
       "senderEmail": "john.doe@example.com",
-      "reciverEmail": "jane.doe@example.com"
+      "reciverEmail": "jane.doe@example.com",
+      "addedBy": "Employee A"
     },
     {
       "id": 2,
@@ -57,7 +58,8 @@
       "senderPhoneNumber": "+251912345678",
       "reciverPhoneNumber": "+251712345678",
       "senderEmail": "alice.smith@example.com",
-      "reciverEmail": "bob.johnson@example.com"
+      "reciverEmail": "bob.johnson@example.com",
+      "addedBy": "Employee B"
     },
     {
       "id": 3,
@@ -89,7 +91,8 @@
       "senderPhoneNumber": "+251913456789",
       "reciverPhoneNumber": "+251713456789",
       "senderEmail": "charlie.brown@example.com",
-      "reciverEmail": "lucy.vanpelt@example.com"
+      "reciverEmail": "lucy.vanpelt@example.com",
+      "addedBy": "Employee C"
     },
     {
       "id": 4,
@@ -116,7 +119,8 @@
       "senderPhoneNumber": "+251914567890",
       "reciverPhoneNumber": "+251714567890",
       "senderEmail": "david.wilson@example.com",
-      "reciverEmail": "emma.thomas@example.com"
+      "reciverEmail": "emma.thomas@example.com",
+      "addedBy": "Employee D"
     },
     {
       "id": 5,
@@ -148,29 +152,8 @@
       "senderPhoneNumber": "+251915678901",
       "reciverPhoneNumber": "+251715678901",
       "senderEmail": "ethan.martinez@example.com",
-      "reciverEmail": "olivia.garcia@example.com"
-    },
-    {
-      "id": 6,
-      "transactionId": "DET20250",
-      "updatedAt": "2021-06-01T22:00:00",
-      "paymentMethod": "On Deliver",
-      "statuses": {
-        "pending": {
-          "type": "pending",
-          "date": "2021-01-01T12:00:00",
-          "location": "unknown"
-        },
-        "delivered": {
-          "type": "delivered",
-          "date": "2021-01-01T12:00:00",
-          "location": "unknown"
-        }
-      },
-      "senderPhoneNumber": "+251911234567",
-      "reciverPhoneNumber": "+251711234567",
-      "senderEmail": "unknown@example.com",
-      "reciverEmail": "unknown@example.com"
+      "reciverEmail": "olivia.garcia@example.com",
+      "addedBy": "Employee E"
     },
     {
       "id": 7,
@@ -197,7 +180,8 @@
       "senderPhoneNumber": "+251911234567",
       "reciverPhoneNumber": "+251711234567",
       "senderEmail": "ivy.walker@example.com",
-      "reciverEmail": "jack.hall@example.com"
+      "reciverEmail": "jack.hall@example.com",
+      "addedBy": "Employee G"
     },
     {
       "id": 8,
@@ -234,7 +218,8 @@
       "senderPhoneNumber": "+251911234567",
       "reciverPhoneNumber": "+251711234567",
       "senderEmail": "kevin.young@example.com",
-      "reciverEmail": "laura.harris@example.com"
+      "reciverEmail": "laura.harris@example.com",
+      "addedBy": "Employee H"
     },
     {
       "id": 9,
@@ -266,7 +251,8 @@
       "senderPhoneNumber": "+251911234567",
       "reciverPhoneNumber": "+251711234567",
       "senderEmail": "liam.king@example.com",
-      "reciverEmail": "mia.scott@example.com"
+      "reciverEmail": "mia.scott@example.com",
+      "addedBy": "Employee I"
     },
     {
       "id": 10,
@@ -293,7 +279,8 @@
       "senderPhoneNumber": "+251911234567",
       "reciverPhoneNumber": "+251711234567",
       "senderEmail": "noah.wright@example.com",
-      "reciverEmail": "sophia.green@example.com"
+      "reciverEmail": "sophia.green@example.com",
+      "addedBy": "Employee J"
     },
     {
       "id": 11,
@@ -330,7 +317,8 @@
       "senderPhoneNumber": "+251911234567",
       "reciverPhoneNumber": "+251711234567",
       "senderEmail": "olivia.brown@example.com",
-      "reciverEmail": "william.davis@example.com"
+      "reciverEmail": "william.davis@example.com",
+      "addedBy": "Employee K"
     }
   ]
 }
