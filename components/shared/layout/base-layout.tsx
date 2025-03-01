@@ -8,7 +8,7 @@ export default function BaseLayout({ children }: BaseLayoutProps) {
         <SidebarProvider>
             {/* <AppSidebar /> */}
             <SidebarLayout/>
-            <div className="flex flex-col w-full">
+            <div className="flex flex-col">
                 <Header></Header>
                 {children}
             </div>
