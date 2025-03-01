@@ -7,7 +7,8 @@ import {
   SidebarGroupContent,
   SidebarMenu,
   SidebarMenuButton,
-  SidebarMenuItem
+  SidebarMenuItem,
+  SidebarTrigger
 } from "@/components/ui/sidebar"
 import Image from "next/image"
 
@@ -38,8 +39,7 @@ export function AppSidebar() {
             <div className="font-extrabold text-2xl text-white">Dire <span className="text-red-600 ml-[-4px]">Express</span></div>
           </div>
           <div className="flex items-center cursor-pointer">
-            <LuChevronLeft className="mr-[-5px]"/>
-            <LuChevronLeft />
+            <SidebarTrigger className="" />
           </div>
         </div>
         <a href="/admin" className="w-full py-4 px-5 flex justify-between items-center rounded-[10px] font-bold bg-[#C7E7F6F5]">

@@ -18,6 +18,7 @@ import { cn } from "@/lib/utils"
 import { GiHamburgerMenu } from "react-icons/gi"
 import { Button } from "../shared/custom-shadcn.tsx/custom-button-sidebar"
 import { Sheet, SheetContent, SheetTitle } from "../shared/custom-shadcn.tsx/custom-sheet-sidebar"
+import { LuChevronLeft } from "react-icons/lu"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
@@ -274,14 +275,18 @@ const SidebarTrigger = React.forwardRef<
       data-sidebar="trigger"
       variant="default"
       size="icon"
-      className={cn(" bg-[#060A87]", className)}
+      className={cn(" bg-[#060A87] sm:shadow-none", className)}
       onClick={(event) => {
         onClick?.(event)
         toggleSidebar()
       }}
       {...props}
     >
-     <GiHamburgerMenu stroke="white" size={28}/>
+      <GiHamburgerMenu stroke="white" className="md:hidden" size={28} />
+      <div className="flex items-center">
+        <LuChevronLeft className="mr-[-10px] hidden md:block" size={20} />
+        <LuChevronLeft className="hidden md:block" size={20}/>
+      </div>
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   )
