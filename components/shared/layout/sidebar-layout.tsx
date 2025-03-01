@@ -77,22 +77,22 @@ export default function SidebarLayout() {
                     <Image src={plane} alt="plane image" className={"w-11 mx-auto h-auto rotate-0"} />
                     <SidebarToggle reversed={true}/>
                 </div>
-                <a href="/admin" className={cn(" ml-5 mr-5 py-4 px-5 flex justify-between items-center rounded-[10px] font-bold bg-[#C7E7F6F5]", state == "collapsed" && "hidden")}>
+                <Link href="/admin" className={cn(" ml-5 mr-5 py-4 px-5 flex justify-between items-center rounded-[10px] font-bold bg-[#C7E7F6F5]", state == "collapsed" && "hidden")}>
                     <div className="text-[#060A87] flex items-center justify-center">Dashboard</div>
                     <LuLayoutGrid stroke="#060A87" size={24} />
-                </a>
-                <a href="/admin" className={cn(" ml-2 mr-2 py-4 px-5 flex justify-between items-center rounded-[10px] font-bold bg-[#C7E7F6F5]", state !== "collapsed" && "hidden")}>
+                </Link>
+                <Link href="/admin" className={cn(" ml-2 mr-2 py-4 px-5 flex justify-between items-center rounded-[10px] font-bold bg-[#C7E7F6F5]", state !== "collapsed" && "hidden")}>
                     <LuLayoutGrid stroke="#060A87" size={24} />
-                </a>
-                <SidebarMenu className="gap-0 p-0 m-0">
+                </Link>
+                <SidebarMenu className="gap-2 p-0 m-0">
                     {menuItems.map((item, index) => (
                         <SidebarMenuItem key={index}>
                             <Link
                                 href={item.url}
                                 className={cn(`flex items-center justify-start gap-3 p-3 transition duration-300 ease-in-out`,
                                     selectedItem == item.title
-                                        ? 'bg-gray-800 text-white'
-                                        : 'hover:bg-gray-200 hover:text-gray-900')}
+                                        ? 'bg-[#030661] text-white'
+                                        : 'hover:bg-[#C7E7F6F5] hover:text-gray-900', state === 'expanded' ? 'mx-5 rounded-[12px]' : 'ml-2 mr-2 rounded-[10px]')}
                             >
                                 <item.icon className={cn("h-6 w-6", state == "collapsed" && "mx-auto")} />
                                 {state === 'expanded' && (
