@@ -55,7 +55,7 @@ export default function SidebarLayout() {
     return (
         <Sidebar
             collapsible="icon"
-            className="fixed left-0 top-0 h-full pt-[68px] z-60 border-r border-gray-800"
+            className="fixed left-0 top-0 h-full z-60 border-r border-gray-800"
             style={{
                 transition: 'width 0.2s',
                 width: state === 'collapsed' ? '5rem' : '16rem',
