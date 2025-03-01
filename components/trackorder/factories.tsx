@@ -29,3 +29,4 @@ export function getStatusColor(status: string): string {
       return 'bg-gray-100 text-gray-600';
   }
 }
+
