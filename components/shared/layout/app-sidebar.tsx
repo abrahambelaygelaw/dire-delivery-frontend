@@ -21,6 +21,7 @@ import { LuChevronLeft, LuLayoutGrid } from "react-icons/lu"
 import { menuItems } from "@/data/layout"
 import plane from "@/public/Icons/plane.svg"
 
+
 export function AppSidebar() {
   const pathname = usePathname();
   const [selectedItem, setSelectedItem] = useState("");
