@@ -11,3 +11,10 @@ export const TrackOrder = async ({ id }: orderTrack) => {
   const response = await apiCall({ url: fetchURl });
   return response;
 };
+
+export const FetchOrders = async () => {
+  const fetchURl = `${url}`;
+  console.log(`fetchUrl`, fetchURl);
+  const response = await apiCall({ url: fetchURl });
+  return response;
+};
