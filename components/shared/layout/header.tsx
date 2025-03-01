@@ -6,7 +6,7 @@ import SidebarToggle from "./sidebar-toggle"
 
 function Header() {
   return (
-    <div className="px-6 h-20 flex items-center bg-[#060A87] w-full">
+    <div className="px-6 h-20 flex items-center bg-[#060A87] w-full md:hidden">
       {/* <SidebarTrigger /> */}
       <SidebarToggle />
       <div className="flex gap-1 items-center justify-center ml-auto">

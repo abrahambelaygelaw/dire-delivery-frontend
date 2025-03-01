@@ -34,13 +34,13 @@ export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarContent className="bg-[#060A87] text-white py-6 px-3 md:px-6 flex flex-col gap-6">
-        <div className="flex justify-between">
+        <div className="flex ">
           <div className="flex items-center gap-0">
             <Image src={plane} alt="plane image" className="w-11 h-auto rotate-0 ml-[-5px]" />
             <div className="font-extrabold text-2xl text-white">Dire <span className="text-red-600 ml-[-4px]">Express</span></div>
           </div>
           <div className="flex items-center cursor-pointer">
-            <SidebarTrigger className="" />
+            <SidebarTrigger />
           </div>
         </div>
         <a href="/admin" className="w-full py-4 px-5 flex justify-between items-center rounded-[10px] font-bold bg-[#C7E7F6F5]">
