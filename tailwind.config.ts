@@ -75,5 +75,4 @@ export default {
       '2xl': '1536px', // Extra extra large devices (large desktops)
     },
   },
-  plugins: [require('tailwindcss-animate')],
 } satisfies Config;
