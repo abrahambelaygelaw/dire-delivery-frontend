@@ -8,7 +8,7 @@ function Header() {
   return (
     <div className="px-6 h-20 flex items-center bg-[#060A87] w-full md:hidden">
       {/* <SidebarTrigger /> */}
-      <SidebarToggle />
+      <SidebarToggle reversed={false}/>
       <div className="flex gap-1 items-center justify-center ml-auto">
         <Avatar>
           <AvatarImage src="https://github.com/shadcn.png" />

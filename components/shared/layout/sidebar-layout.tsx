@@ -10,14 +10,18 @@ import {
 } from '@/components/ui/sidebar';
 import { Home, Search, Dices, Film, Tv } from 'lucide-react';
 import plane from "@/public/Icons/plane.svg"
+import question from "@/public/Icons/question.svg"
 import { ClipboardList, Settings, UserCog, Users } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
-import { LuLayoutGrid } from 'react-icons/lu';
+import { LuChevronDown, LuChevronRight, LuChevronUp, LuLayoutGrid } from 'react-icons/lu';
 import SidebarToggle from './sidebar-toggle';
+import { FaRegCircleQuestion } from "react-icons/fa6";
+import { RxQuestionMarkCircled } from "react-icons/rx";
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 export default function SidebarLayout() {
     const { state } = useSidebar();
@@ -69,13 +73,13 @@ export default function SidebarLayout() {
                         <div className="font-extrabold text-2xl text-white">Dire <span className="text-red-600 ml-[-4px]">Express</span></div>
                     </div>
                     <div className='mr-4 flex items-center'>
-                        <SidebarToggle reversed={false}/>
+                        <SidebarToggle reversed={false} />
                     </div>
 
                 </div>
-                <div className={cn('flex mr-2', state !== 'collapsed' ? 'hidden': '')}>
+                <div className={cn('flex mr-2', state !== 'collapsed' ? 'hidden' : '')}>
                     <Image src={plane} alt="plane image" className={"w-11 mx-auto h-auto rotate-0"} />
-                    <SidebarToggle reversed={true}/>
+                    <SidebarToggle reversed={true} />
                 </div>
                 <Link href="/admin" className={cn(" ml-5 mr-5 py-4 px-5 flex justify-between items-center rounded-[10px] font-bold bg-[#C7E7F6F5]", state == "collapsed" && "hidden")}>
                     <div className="text-[#060A87] flex items-center justify-center">Dashboard</div>
@@ -103,9 +107,28 @@ export default function SidebarLayout() {
                     ))}
                 </SidebarMenu>
             </SidebarContent>
-            <SidebarFooter className="p-4">
+            <SidebarFooter className="p-6 bg-[#060A87]">
                 {state === 'expanded' ? (
-                    <p className="text-sm text-gray-500">© 2024 CineAtlas</p>
+                    <div className='flex flex-col gap-4 items-start'>
+                        <div className='flex gap-2.5'>
+                            <Image src={question} alt="question logo" />
+                            <div className='font-bold text-sm text-white'>Help Center</div>
+                        </div>
+                        <div className='flex w-full justify-between items-center'>
+                            <div className="flex gap-1">
+                                <Avatar>
+                                    <AvatarImage src="https://github.com/shadcn.png" />
+                                    <AvatarFallback>CN</AvatarFallback>
+                                </Avatar>
+                                <div className='flex flex-col items-start'>
+                                    <div className='font-semibold text-sm text-white'>Hanna Baptista</div>
+                                    <div className='text-[#D6D1D1] text-xs'>hanna@unpixel.com</div>
+                                </div>
+                            </div>
+                            <LuChevronUp stroke='white' className='cursor-pointer' size={24}/>
+                        </div>
+
+                    </div>
                 ) : (
                     <img src={plane} alt="logo" className="h-6 w-6" />
                 )}
