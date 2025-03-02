@@ -107,31 +107,28 @@ export default function SidebarLayout() {
                     ))}
                 </SidebarMenu>
             </SidebarContent>
-            <SidebarFooter className="p-6 bg-[#060A87]">
-                {state === 'expanded' ? (
-                    <div className='flex flex-col gap-4 items-start'>
-                        <div className='flex gap-2.5'>
-                            <Image src={question} alt="question logo" />
-                            <div className='font-bold text-sm text-white'>Help Center</div>
-                        </div>
-                        <div className='flex w-full justify-between items-center'>
-                            <div className="flex gap-1">
-                                <Avatar>
-                                    <AvatarImage src="https://github.com/shadcn.png" />
-                                    <AvatarFallback>CN</AvatarFallback>
-                                </Avatar>
-                                <div className='flex flex-col items-start'>
-                                    <div className='font-semibold text-sm text-white'>Hanna Baptista</div>
-                                    <div className='text-[#D6D1D1] text-xs'>hanna@unpixel.com</div>
-                                </div>
-                            </div>
-                            <LuChevronUp stroke='white' className='cursor-pointer' size={24}/>
-                        </div>
-
+            <SidebarFooter className="p-5 bg-[#060A87]">
+                <div className='flex flex-col gap-4 items-start'>
+                    <div className='flex gap-2.5 cursor-pointer'>
+                        <Image src={question} alt="question logo" className={cn('w-5 h-auto transition-transform duration-300 ease-in-out', state == "collapsed" && "ml-2.5")} />
+                        <div className={cn('font-bold text-sm text-white', state == "collapsed" && "hidden")}>Help Center</div>
                     </div>
-                ) : (
-                    <img src={plane} alt="logo" className="h-6 w-6" />
-                )}
+                    <div className='flex w-full justify-between items-center'>
+                        <div className="flex gap-1">
+                            <Avatar>
+                                <AvatarImage src="https://github.com/shadcn.png" />
+                                <AvatarFallback>CN</AvatarFallback>
+                            </Avatar>
+                            <div className={cn('flex flex-col items-start', state == "collapsed" && "hidden")}>
+                                <div className='font-semibold text-sm text-white'>Hanna Baptista</div>
+                                <div className='text-[#D6D1D1] text-xs'>hanna@unpixel.com</div>
+                            </div>
+                        </div>
+                        <LuChevronUp stroke='white' className='cursor-pointer' size={24} />
+                    </div>
+
+                </div>
+
             </SidebarFooter>
         </Sidebar>
     );
