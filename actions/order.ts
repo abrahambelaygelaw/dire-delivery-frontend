@@ -18,3 +18,11 @@ export const FetchOrders = async () => {
   const response = await apiCall({ url: fetchURl });
   return response;
 };
+
+export const FetchOrder = async (id: string) => {
+  console.log('id:', id);
+  const fetchURl = `${url}?transactionId=${id}`;
+  console.log('fetchURl:', fetchURl);
+  const response = await apiCall({ url: fetchURl });
+  return response;
+};
