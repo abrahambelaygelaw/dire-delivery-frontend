@@ -17,11 +17,20 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
-import { LuChevronDown, LuChevronRight, LuChevronUp, LuLayoutGrid } from 'react-icons/lu';
+import { LuChevronDown, LuChevronRight, LuChevronUp, LuLayoutGrid, LuLogOut } from 'react-icons/lu';
 import SidebarToggle from './sidebar-toggle';
 import { FaRegCircleQuestion } from "react-icons/fa6";
 import { RxQuestionMarkCircled } from "react-icons/rx";
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/shared/custom-shadcn/custom-dialog-logout"
+
 
 export default function SidebarLayout() {
     const { state } = useSidebar();
@@ -113,7 +122,7 @@ export default function SidebarLayout() {
                         <Image src={question} alt="question logo" className={cn('w-5 h-auto transition-transform duration-300 ease-in-out', state == "collapsed" && "mx-auto")} />
                         <div className={cn('font-bold text-sm text-white', state == "collapsed" && "hidden")}>Help Center</div>
                     </div>
-                    <div className={cn('flex w-full justify-between items-center', state == "collapsed" && "px-2")}>
+                    <div className={cn('flex w-full justify-between items-center relative', state == "collapsed" && "px-2")}>
                         <div className="flex gap-1.5">
                             <Avatar className='cursor-pointer'>
                                 <AvatarImage src="https://github.com/shadcn.png" />
@@ -124,7 +133,20 @@ export default function SidebarLayout() {
                                 <div className='text-[#D6D1D1] text-xs'>hanna@unpixel.com</div>
                             </div>
                         </div>
-                        <LuChevronUp stroke='white' className={cn('cursor-pointer', state == "collapsed" && "")} size={24} />
+                        <div>
+                            <Dialog>
+                                <DialogTrigger>
+                                    <LuChevronUp stroke='white' className={cn('cursor-pointer', state == "collapsed" && "")} size={24} />
+                                </DialogTrigger>
+                                <DialogContent className={cn('bottom-16 left-40  bg-white py-3 px-3 rounded-md transition-all hover:bg-gray-200', state == "collapsed" && "left-14")}>
+                                    <DialogHeader className='p-0'>
+                                        <DialogTitle className="flex gap-2 text-sm font-normal cursor-pointer">
+                                            <LuLogOut /> Logout
+                                        </DialogTitle>
+                                    </DialogHeader>
+                                </DialogContent>
+                            </Dialog>
+                        </div>
                     </div>
 
                 </div>

@@ -1,6 +1,6 @@
 "use client"
 
-import { Button } from '../custom-shadcn.tsx/custom-button-sidebar';
+import { Button } from '../custom-shadcn/custom-button-sidebar';
 import { Menu } from 'lucide-react';
 import { useSidebar } from '@/components/ui/sidebar';
 import { LuChevronLeft, LuMenu } from 'react-icons/lu';
