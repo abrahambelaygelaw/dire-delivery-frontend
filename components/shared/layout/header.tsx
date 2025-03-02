@@ -1,7 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { SidebarTrigger } from "@/components/ui/sidebar"
 import { LuChevronDown } from "react-icons/lu"
-import SidebarToggle from "./sidebar-toggle"
 import SidebarToggleHeader from "./sidebar-toggle-header"
 
 

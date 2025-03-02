@@ -12,14 +12,13 @@ import {
 } from "@/components/ui/sidebar"
 import Image from "next/image"
 
+import { menuItems } from "@/data/layout"
 import { cn } from "@/lib/utils"
-import direLogo from "@/public/dire-logo.svg"
+import plane from "@/public/Icons/plane.svg"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import { GrCircleQuestion } from "react-icons/gr"
-import { LuChevronLeft, LuLayoutGrid } from "react-icons/lu"
-import { menuItems } from "@/data/layout"
-import plane from "@/public/Icons/plane.svg"
+import { LuLayoutGrid } from "react-icons/lu"
 
 
 export function AppSidebar() {

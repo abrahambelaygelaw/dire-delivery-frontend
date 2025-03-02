@@ -1,10 +1,9 @@
 "use client"
 
 import { Button } from '@/components/ui/button';
-import { Menu } from 'lucide-react';
 import { useSidebar } from '@/components/ui/sidebar';
-import { LuChevronLeft } from 'react-icons/lu';
 import { cn } from '@/lib/utils';
+import { LuChevronLeft } from 'react-icons/lu';
 interface SidebarToggleProps {
     reversed: boolean; // Optional boolean prop
   }

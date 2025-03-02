@@ -1,6 +1,5 @@
 import { SidebarProvider } from "@/components/ui/sidebar";
 import Header from "./header";
-import { AppSidebar } from "./app-sidebar";
 import SidebarLayout from "./sidebar-layout";
 
 export default function BaseLayout({ children }: BaseLayoutProps) {

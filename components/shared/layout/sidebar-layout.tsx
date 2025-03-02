@@ -1,6 +1,14 @@
 "use client"
 
 import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger
+} from "@/components/shared/custom-shadcn/custom-dialog-logout";
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import {
     Sidebar,
     SidebarContent,
     SidebarFooter,
@@ -8,28 +16,16 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from '@/components/ui/sidebar';
-import { Home, Search, Dices, Film, Tv } from 'lucide-react';
-import plane from "@/public/Icons/plane.svg"
-import question from "@/public/Icons/question.svg"
+import { cn } from '@/lib/utils';
+import plane from "@/public/Icons/plane.svg";
+import question from "@/public/Icons/question.svg";
 import { ClipboardList, Settings, UserCog, Users } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { cn } from '@/lib/utils';
-import Image from 'next/image';
-import { LuChevronDown, LuChevronRight, LuChevronUp, LuLayoutGrid, LuLogOut } from 'react-icons/lu';
+import { LuChevronUp, LuLayoutGrid, LuLogOut } from 'react-icons/lu';
 import SidebarToggle from './sidebar-toggle';
-import { FaRegCircleQuestion } from "react-icons/fa6";
-import { RxQuestionMarkCircled } from "react-icons/rx";
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/shared/custom-shadcn/custom-dialog-logout"
 
 
 export default function SidebarLayout() {
