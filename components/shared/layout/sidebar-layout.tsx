@@ -93,10 +93,10 @@ export default function SidebarLayout() {
                         <SidebarMenuItem key={index}>
                             <Link
                                 href={item.url}
-                                className={cn(`flex items-center justify-start gap-3 p-3 transition duration-300 ease-in-out`,
+                                className={cn(`flex items-center justify-start gap-3 py-3 transition-all duration-300 ease-in-out`,
                                     selectedItem == item.title
-                                        ? 'bg-[#030661] text-white'
-                                        : 'hover:bg-[#C7E7F6F5] hover:text-gray-900', state === 'expanded' ? 'mx-5 rounded-[12px]' : 'ml-2 mr-2 rounded-[10px]')}
+                                        ? 'bg-[#030661] text-white px-3'
+                                        : 'hover:bg-[#C7E7F6F5] hover:text-gray-900 hover:px-3', state === 'expanded' ? 'mx-5 rounded-[12px]' : 'ml-2 mr-2 rounded-[10px]')}
                             >
                                 <item.icon className={cn("h-6 w-6", state == "collapsed" && "mx-auto")} />
                                 {state === 'expanded' && (
