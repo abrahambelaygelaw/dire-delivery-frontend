@@ -29,7 +29,7 @@ export default function Page() {
       {/* Welcome Section */}
       <div className="h-fit justify-start items-center gap-9 inline-flex">
         <div className="flex-col justify-start items-start gap-2 inline-flex">
-          <div className="self-stretch text-[#060a87] text-3xl font-extrabold font-['Manrope'] leading-[36px]">
+          <div className="self-stretch text-[#060A87] text-3xl font-extrabold font-['Manrope'] leading-[36px]">
             Welcome Back, Owner!
           </div>
           <div className="self-stretch text-[#495d85] text-base font-extrabold font-['Manrope'] leading-tight">
