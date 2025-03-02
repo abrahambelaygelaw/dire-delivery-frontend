@@ -59,14 +59,14 @@ export default function SidebarLayout() {
     return (
         <Sidebar
             collapsible="icon"
-            className="fixed left-0 top-0 h-full z-60 border-r border-gray-800"
+            className="fixed left-0 top-0 h-full z-60 border-gray-800"
             style={{
                 transition: 'width 0.2s',
                 width: state === 'collapsed' ? '5rem' : '16rem',
             }}
         >
             <SidebarContent className="bg-[#060A87] text-white py-6 flex gap-6">
-                <div className={cn("transition-all duration-300 ease-in-out hidden opacity-0 scale-90",
+                <div className={cn("transition-all duration-300 ease-in-out hidden opacity-0 scale-90 px-4 md:px-0",
                     state !== "collapsed" && "scale-100 opacity-100 flex justify-between")}>
                     <div className="flex items-center gap-0">
                         <Image src={plane} alt="plane image" className="w-11 h-auto rotate-0 " />
