@@ -25,9 +25,9 @@ export default function Page() {
   console.log(`orders:`, orders);
 
   return (
-    <section className="w-full px-8 py-4">
+    <section className="w-full px-8 py-4 bg-[#F1F2F8]">
       {/* Welcome Section */}
-      <div className="h-fit border-b border-gray-100 justify-start items-center gap-9 inline-flex">
+      <div className="h-fit justify-start items-center gap-9 inline-flex">
         <div className="flex-col justify-start items-start gap-2 inline-flex">
           <div className="self-stretch text-[#060a87] text-3xl font-extrabold font-['Manrope'] leading-[40px]">
             Welcome Back, Owner!
@@ -37,14 +37,20 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Orders</h1>
-        <Button className="bg-emerald-500 hover:bg-emerald-600">
-          <Plus className="mr-2 h-4 w-4" /> Add New Order
-        </Button>
-      </div>
-      {/* Datatable */}
-      <DataTable columns={columns} data={orders} totalEntries={orders.length} />
+      <section className=" w-full border px-6 py-2 mt-3 bg-white rounded-2xl flex-col justify-between items-start inline-flex overflow-hidden">
+        <div className="w-full flex justify-between items-center mt-4 mb-6">
+          <h1 className="text-2xl font-bold">Orders</h1>
+          <Button className="bg-emerald-500 hover:bg-emerald-600">
+            <Plus className="mr-2 h-4 w-4" /> Add New Order
+          </Button>
+        </div>
+        {/* Datatable */}
+        <DataTable
+          columns={columns}
+          data={orders}
+          totalEntries={orders.length}
+        />
+      </section>
     </section>
   );
 }

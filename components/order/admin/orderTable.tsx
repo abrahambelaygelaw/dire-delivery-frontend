@@ -55,16 +55,18 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div>
-      <div className="flex items-center py-4 gap-2">
+    <div className='w-full'>
+      <div className="flex items-center py-4 gap-4">
         <Input
-          placeholder="Search an admin"
+          placeholder="Search by name"
           value={
-            (table.getColumn('transactionId')?.getFilterValue() as string) ?? ''
+            (table.getColumn('senderName')?.getFilterValue() as string) ?? ''
           }
-          onChange={(event) =>
-            table.getColumn('transactionId')?.setFilterValue(event.target.value)
-          }
+          onChange={(event) => {
+            const value = event.target.value || undefined;
+            table.getColumn('senderName')?.setFilterValue(value);
+            table.getColumn('reciverName')?.setFilterValue(value);
+          }}
           className="max-w-sm"
         />
         <Select
@@ -72,7 +74,7 @@ export function DataTable<TData, TValue>({
           onValueChange={(value) =>
             table
               .getColumn('status')
-              ?.setFilterValue(value === 'All Status' ? '' : value)
+              ?.setFilterValue(value === 'All Status' ? undefined : value)
           }
         >
           <SelectTrigger className="w-[180px]">
@@ -82,7 +84,7 @@ export function DataTable<TData, TValue>({
             <SelectItem value="All Status">All Status</SelectItem>
             <SelectItem value="Delivered">Delivered</SelectItem>
             <SelectItem value="Pending">Pending</SelectItem>
-            <SelectItem value="picked up">Picked Up</SelectItem>
+            <SelectItem value="Picked Up">Picked Up</SelectItem>
           </SelectContent>
         </Select>
       </div>
