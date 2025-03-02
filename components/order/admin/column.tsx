@@ -48,7 +48,6 @@ export const columns: ColumnDef<Order>[] = [
       const formatted = getStatusColor(
         (row.getValue('status') as string).toLowerCase()
       );
-
       return (
         <div
           className={`w-20 h-fit rounded-xl flex items-center  justify-center z-10  ${formatted}`}

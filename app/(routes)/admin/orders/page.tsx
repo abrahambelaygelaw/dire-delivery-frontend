@@ -4,6 +4,8 @@ import { Order } from '@/types/orderType';
 import { FetchOrders } from '@/actions/order';
 import { columns } from '@/components/order/admin/column';
 import { DataTable } from '@/components/order/admin/orderTable';
+import { Button } from '@/components/ui/button';
+import { Plus } from 'lucide-react';
 export default function Page() {
   const [orders, setOrders] = useState<Order[]>([]);
 
@@ -35,8 +37,14 @@ export default function Page() {
           </div>
         </div>
       </div>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold">Orders</h1>
+        <Button className="bg-emerald-500 hover:bg-emerald-600">
+          <Plus className="mr-2 h-4 w-4" /> Add New Order
+        </Button>
+      </div>
       {/* Datatable */}
-      <DataTable columns={columns} data={orders} />
+      <DataTable columns={columns} data={orders} totalEntries={orders.length} />
     </section>
   );
 }
