@@ -8,13 +8,15 @@ import { Button } from '@/components/ui/button';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import { LuEye } from 'react-icons/lu';
 import Link from 'next/link';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-
-const handleclick = (id: string) => {
-  console.log(id);
-};
 
 export const columns: ColumnDef<Order>[] = [
   {
@@ -70,28 +72,33 @@ export const columns: ColumnDef<Order>[] = [
     header: 'Actions',
     cell: ({ row }) => {
       const order = row.getValue('transactionId') as string;
-        
-      return (
-        <div className="flex space-x-2">
-          <Link href={`/admin/orders/${order}`}>
-            <Button
-              variant="outline"
-              size="icon"
-              className="h-8 w-8 bg-[#27A376] hover:bg-[#218d65] hover:text-white text-white border-none"
-              onClick={() => handleclick(order)}
-            >
-              <LuEye className="h-4 w-4" />
-            </Button>
-          </Link>
 
-          <Button
-            variant="outline"
-            size="icon"
-            className="h-8 w-8 bg-[#E03137] hover:bg-[#a82428] hover:text-white  text-white border-none"
-          >
-            <RiDeleteBin5Line className="h-4 w-4" />
-          </Button>
-        </div>
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" size="icon" className="h-8 w-8">
+              <span className="text-lg">⋮</span> {/* Three-dot button */}
+            </Button>
+          </DropdownMenuTrigger>
+
+          <DropdownMenuContent align="end" className="w-40">
+            <Link href={`/admin/orders/${order}`} passHref>
+              <DropdownMenuItem className="cursor-pointer">
+                <LuEye className="mr-2 h-4 w-4" />
+                View
+              </DropdownMenuItem>
+            </Link>
+
+            <DropdownMenuItem className="cursor-pointer text-red-600 hover:bg-red-100">
+              <RiDeleteBin5Line className="mr-2 h-4 w-4" />
+              Delete
+            </DropdownMenuItem>
+
+            <DropdownMenuItem className="cursor-pointer text-blue-600 hover:bg-blue-100">
+              🔑 Reset Password
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       );
     },
   },
