@@ -107,15 +107,15 @@ export default function SidebarLayout() {
                     ))}
                 </SidebarMenu>
             </SidebarContent>
-            <SidebarFooter className="p-5 bg-[#060A87]">
-                <div className='flex flex-col gap-4 items-start'>
+            <SidebarFooter className={cn("p-5 bg-[#060A87]", state == "collapsed" && "px-0")}>
+                <div className='flex flex-col gap-4 '>
                     <div className='flex gap-2.5 cursor-pointer'>
-                        <Image src={question} alt="question logo" className={cn('w-5 h-auto transition-transform duration-300 ease-in-out', state == "collapsed" && "ml-2.5")} />
+                        <Image src={question} alt="question logo" className={cn('w-5 h-auto transition-transform duration-300 ease-in-out', state == "collapsed" && "mx-auto")} />
                         <div className={cn('font-bold text-sm text-white', state == "collapsed" && "hidden")}>Help Center</div>
                     </div>
-                    <div className='flex w-full justify-between items-center'>
-                        <div className="flex gap-1">
-                            <Avatar>
+                    <div className={cn('flex w-full justify-between items-center', state == "collapsed" && "px-2")}>
+                        <div className="flex gap-1.5">
+                            <Avatar className='cursor-pointer'>
                                 <AvatarImage src="https://github.com/shadcn.png" />
                                 <AvatarFallback>CN</AvatarFallback>
                             </Avatar>
@@ -124,7 +124,7 @@ export default function SidebarLayout() {
                                 <div className='text-[#D6D1D1] text-xs'>hanna@unpixel.com</div>
                             </div>
                         </div>
-                        <LuChevronUp stroke='white' className='cursor-pointer' size={24} />
+                        <LuChevronUp stroke='white' className={cn('cursor-pointer', state == "collapsed" && "")} size={24} />
                     </div>
 
                 </div>
