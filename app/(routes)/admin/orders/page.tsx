@@ -4,10 +4,12 @@ import { Order } from '@/types/orderType';
 import { FetchOrders } from '@/actions/order';
 import { columns } from '@/components/order/admin/column';
 import { DataTable } from '@/components/order/admin/orderTable';
-import { Button } from '@/components/ui/button';
-import { Plus } from 'lucide-react';
+import AddOrderDialogue from '@/components/order/addOrderDialogue';
+import { city } from '@/types/cities';
+import { fetchCity } from '@/actions/cities';
 export default function Page() {
   const [orders, setOrders] = useState<Order[]>([]);
+  const [cities, setCities] = useState<city[]>([]);
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -21,6 +23,21 @@ export default function Page() {
     };
     fetchOrders();
   }, []);
+
+  useEffect(() => {
+    const fetchCities = async () => {
+      try {
+        const response = await fetchCity();
+        console.log('cities:', response);
+        setCities(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchCities();
+  }, []);
+
+  console.log('city:', cities);
 
   console.log(`orders:`, orders);
 
@@ -40,9 +57,7 @@ export default function Page() {
       <section className=" w-full border px-6 py-2 mt-3 bg-white rounded-2xl flex-col justify-between items-start inline-flex overflow-hidden">
         <div className="w-full flex justify-between items-center mt-4 ">
           <h1 className="text-2xl font-bold">Orders</h1>
-          <Button className="bg-emerald-500 hover:bg-emerald-600">
-            <Plus className="mr-2 h-4 w-4" /> Add New Order
-          </Button>
+          <AddOrderDialogue cities={cities} />
         </div>
         {/* Datatable */}
         <DataTable

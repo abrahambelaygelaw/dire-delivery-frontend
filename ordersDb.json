@@ -320,5 +320,31 @@
       "reciverEmail": "william.davis@example.com",
       "addedBy": "Employee K"
     }
+  ],
+  "cities": [
+    {
+      "id": 1,
+      "name": "Addis Ababa"
+    },
+    {
+      "id": 2,
+      "name": "Dire Dawa"
+    },
+    {
+      "id": 3,
+      "name": "Mekelle"
+    },
+    {
+      "id": 4,
+      "name": "Gondar"
+    },
+    {
+      "id": 5,
+      "name": "Bahir Dar"
+    },
+    {
+      "id": 6,
+      "name": "Hawassa"
+    }
   ]
 }
