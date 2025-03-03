@@ -19,7 +19,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import ConfirmModal from './confirmModal';
 type props = {
   cities: city[];
 };
@@ -32,7 +33,7 @@ export default function AddOrderDialogue({ cities }: props) {
           <Plus className="mr-2 h-4 w-4" /> Add New Order
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md bg-white flex flex-col gap-4 min-w-[580px]">
+      <DialogContent className=" top-[48%] sm:max-w-md bg-white flex flex-col gap-4 min-w-[540px] pb-6">
         <DialogHeader>
           <DialogTitle className="text-xl text-[#060A87] font-semibold border-b border-[#060A87] pb-2">
             Add an Order
@@ -101,7 +102,7 @@ export default function AddOrderDialogue({ cities }: props) {
                 </Label>
                 <Select>
                   <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="All Status" />
+                    <SelectValue placeholder="city" />
                   </SelectTrigger>
                   <SelectContent>
                     {cities.map((city) => (
@@ -129,31 +130,72 @@ export default function AddOrderDialogue({ cities }: props) {
                 <Input id="fullname" placeholder="eg: Jhon Doe" />
               </div>
               <div className="grid col-span-3 gap-2 ">
-                <Label htmlFor="fullname" className="text-[#060A87]">
-                  Full Name
+                <Label htmlFor="email" className="text-[#060A87]">
+                  Email
                 </Label>
-                <Input id="fullname" placeholder="eg: Jhon Doe" />
+                <Input id="email" placeholder="eg: example@gmail.com" />
               </div>
             </div>
             <div className="grid grid-cols-6 gap-6 w-full px-4 ">
               <div className="grid col-span-3 gap-2 w-full ">
-                <Label htmlFor="fullname" className="text-[#060A87]">
-                  Full Name
+                <Label htmlFor="phone" className="text-[#060A87]">
+                  Phone Number
                 </Label>
-                <Input id="fullname" placeholder="eg: Jhon Doe" />
+                <Input id="phone" placeholder="eg: 09xxxxxxxx" />
               </div>
               <div className="grid col-span-3 gap-2 ">
-                <Label htmlFor="fullname" className="text-[#060A87]">
-                  Full Name
+                <Label htmlFor="email" className="text-[#060A87]">
+                  Address
                 </Label>
-                <Input id="fullname" placeholder="eg: Jhon Doe" />
+                <Select>
+                  <SelectTrigger className="w-[180px]">
+                    <SelectValue placeholder="city" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {cities.map((city) => (
+                      <SelectItem key={city.id} value={city.name}>
+                        {city.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
             </div>
           </div>
         </div>
         {/* Payment Method */}
-
+        <section className="flex flex-col gap-3">
+          <h1 className="text-lg text-[#060a87] font-medium border-b-[0.2px]">
+            Payment Method
+          </h1>
+          <RadioGroup defaultValue="cash" className="flex px-4 ">
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="cash" id="cash" />
+              <Label htmlFor="cash">Cash</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="delivery" id="delivery" />
+              <Label htmlFor="delivery">Delivery</Label>
+            </div>
+          </RadioGroup>
+        </section>
         {/* Total Price */}
+        <div className="h-12 py-1.5 justify-start items-center gap-1.5 inline-flex">
+          <div className="text-[#060a87] text-2xl font-bold font-['Manrope'] leading-tight">
+            Total:
+          </div>
+          <div className="w-[280px] h-9 justify-start items-center gap-2 flex">
+            <div className="grow shrink basis-0 flex-col justify-start items-start gap-1.5 inline-flex">
+              <div className="self-stretch pl-3 pr-14 py-2 rounded-md border border-slate-200 justify-start items-center inline-flex">
+                <div className="grow shrink basis-0 px-1.5 flex-col justify-end items-start gap-2.5 inline-flex">
+                  <div className="text-black text-lg font-bold font-['Manrope'] leading-[18px]">
+                    345.65 birr
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <DialogFooter className="flex justify-end sm:justify-end w-full">
           <DialogClose asChild>
             <Button
@@ -164,9 +206,7 @@ export default function AddOrderDialogue({ cities }: props) {
               Close
             </Button>
           </DialogClose>
-          <Button type="submit" className="text-white bg-[#27A376]">
-            Add
-          </Button>
+          <ConfirmModal />
         </DialogFooter>
       </DialogContent>
     </Dialog>

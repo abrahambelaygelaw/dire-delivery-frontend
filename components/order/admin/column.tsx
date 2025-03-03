@@ -93,10 +93,6 @@ export const columns: ColumnDef<Order>[] = [
               <RiDeleteBin5Line className="mr-2 h-4 w-4" />
               Delete
             </DropdownMenuItem>
-
-            <DropdownMenuItem className="cursor-pointer text-blue-600 hover:bg-blue-100">
-              🔑 Reset Password
-            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );
