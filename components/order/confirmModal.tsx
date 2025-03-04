@@ -12,11 +12,11 @@ import { Button } from '../ui/button';
 //   cities: city[];
 // };
 
-export default function ConfirmModal() {
+export default function ConfirmModal(type: 'button' | 'submit' | 'reset') {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button type="submit" className="text-white bg-[#27A376]">
+        <Button type={type} className="text-white bg-[#27A376]">
           Add
         </Button>
       </DialogTrigger>

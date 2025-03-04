@@ -7,10 +7,10 @@ import { DataTable } from '@/components/order/admin/orderTable';
 import AddOrderDialogue from '@/components/order/addOrderDialogue';
 import { city } from '@/types/cities';
 import { fetchCity } from '@/actions/cities';
+
 export default function Page() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [cities, setCities] = useState<city[]>([]);
-
   useEffect(() => {
     const fetchOrders = async () => {
       try {
