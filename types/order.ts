@@ -15,7 +15,7 @@ export const formSchema = z.object({
   reciverEmail: z.string().email('Invalid email'),
   reciverPhoneNumber: z.string().min(10, 'Phone number is required'),
   reciverAddress: z.string().min(1, 'Address is required'),
-  paymentMethod: z.enum(['cash', 'delivery']),
+  paymentMethod: z.string(),
 });
 
 export type addFormSchema = z.infer<typeof formSchema>;

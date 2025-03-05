@@ -9,7 +9,7 @@ export type Order = {
   Price?: number; //must be changed based on schema
   senderAddress: string;
   reciverAddress: string;
-  status?: string;
+  status: string;
   createdAt?: string;
   updatedAt?: string;
   paymentMethod?: string;

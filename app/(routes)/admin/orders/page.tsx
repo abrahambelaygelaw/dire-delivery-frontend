@@ -7,10 +7,14 @@ import { DataTable } from '@/components/order/admin/orderTable';
 import AddOrderDialogue from '@/components/order/addOrderDialogue';
 import { city } from '@/types/cities';
 import { fetchCity } from '@/actions/cities';
+import { Plus } from 'lucide-react';
 
 export default function Page() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [cities, setCities] = useState<city[]>([]);
+  const [showNewOrderModal, setShowNewOrderModal] = useState<boolean>(false);
+  const [showConfirmationModal, setShowConfirmationModal] =
+    useState<boolean>(false);
   useEffect(() => {
     const fetchOrders = async () => {
       try {
@@ -57,8 +61,21 @@ export default function Page() {
       <section className=" w-full border px-6 py-2 mt-3 bg-white rounded-2xl flex-col justify-between items-start inline-flex overflow-hidden">
         <div className="w-full flex justify-between items-center mt-4 ">
           <h1 className="text-2xl font-bold">Orders</h1>
-          <AddOrderDialogue cities={cities} />
+          <button
+            onClick={() => setShowNewOrderModal(true)}
+            className="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700"
+          >
+            <Plus className="h-5 w-5" />
+            Add New Order
+          </button>
         </div>
+        <AddOrderDialogue
+          showNewOrderModal={showNewOrderModal}
+          setShowNewOrderModal={setShowNewOrderModal}
+          showConfirmationModal={showConfirmationModal}
+          setShowConfirmationModal={setShowConfirmationModal}
+          cities={cities}
+        />
         {/* Datatable */}
         <DataTable
           columns={columns}
