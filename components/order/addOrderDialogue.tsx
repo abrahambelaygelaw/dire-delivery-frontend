@@ -90,6 +90,7 @@ export default function AddOrderDialogue({
       transactionId: randomTransaction,
       status: 'Pending',
       Price: totalPrice,
+      addedBy:'Eyosi'
     };
     console.log('Order data:', orderData); // Log order data
     setCurrentOrder(orderData);
