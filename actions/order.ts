@@ -1,6 +1,7 @@
 import apiCall from '@/base-api/api';
 import { orderTrack } from '@/types/orderTrack';
 import { endPoints } from '@/data/endPoints';
+import { Order } from '@/types/orderType';
 
 const BaseURL = 'http://localhost:3001';
 const url = `${BaseURL}/${endPoints.anOrder}`;
@@ -24,5 +25,13 @@ export const FetchOrder = async (id: string) => {
   const fetchURl = `${url}?transactionId=${id}`;
   console.log('fetchURl:', fetchURl);
   const response = await apiCall({ url: fetchURl });
+  return response;
+};
+
+export const AddOrder = async (data: Order) => {
+  console.log('addingData:', data);
+  const fetchURl = `${url}`;
+  const response = await apiCall({ url: fetchURl, method: 'POST', data: data });
+  console.log('postResponse:', response);
   return response;
 };

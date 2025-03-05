@@ -1,7 +1,7 @@
 {
   "orders": [
     {
-      "id": 1,
+      "id": "1",
       "transactionId": "DET20245",
       "senderName": "John Doe",
       "reciverName": "Jane Doe",
@@ -29,14 +29,14 @@
       "addedBy": "Employee A"
     },
     {
-      "id": 2,
+      "id": "2",
       "transactionId": "DET20246",
       "senderName": "Alice Smith",
       "reciverName": "Bob Johnson",
       "description": "Books",
       "weight": 5,
       "quantity": 3,
-      "Price": 150.0,
+      "Price": 150,
       "senderAddress": "Chicago, IL",
       "reciverAddress": "Los Angeles, CA",
       "status": "Delivered",
@@ -62,14 +62,14 @@
       "addedBy": "Employee B"
     },
     {
-      "id": 3,
+      "id": "3",
       "transactionId": "DET20247",
       "senderName": "Charlie Brown",
       "reciverName": "Lucy Van Pelt",
       "description": "Clothing",
       "weight": 2,
       "quantity": 5,
-      "Price": 200.0,
+      "Price": 200,
       "senderAddress": "Houston, TX",
       "reciverAddress": "San Francisco, CA",
       "status": "Delivered",
@@ -95,14 +95,14 @@
       "addedBy": "Employee C"
     },
     {
-      "id": 4,
+      "id": "4",
       "transactionId": "DET20248",
       "senderName": "David Wilson",
       "reciverName": "Emma Thomas",
       "description": "Furniture",
       "weight": 50,
       "quantity": 1,
-      "Price": 500.0,
+      "Price": 500,
       "senderAddress": "Phoenix, AZ",
       "reciverAddress": "Seattle, WA",
       "status": "Pending",
@@ -123,14 +123,14 @@
       "addedBy": "Employee D"
     },
     {
-      "id": 5,
+      "id": "5",
       "transactionId": "DET20249",
       "senderName": "Ethan Martinez",
       "reciverName": "Olivia Garcia",
       "description": "Toys",
       "weight": 3,
       "quantity": 10,
-      "Price": 75.0,
+      "Price": 75,
       "senderAddress": "Philadelphia, PA",
       "reciverAddress": "San Diego, CA",
       "status": "Delivered",
@@ -156,14 +156,14 @@
       "addedBy": "Employee E"
     },
     {
-      "id": 7,
+      "id": "7",
       "transactionId": "DET20251",
       "senderName": "Ivy Walker",
       "reciverName": "Jack Hall",
       "description": "Sports Equipment",
       "weight": 20,
       "quantity": 2,
-      "Price": 300.0,
+      "Price": 300,
       "senderAddress": "San Jose, CA",
       "reciverAddress": "Austin, TX",
       "status": "Pending",
@@ -184,14 +184,14 @@
       "addedBy": "Employee G"
     },
     {
-      "id": 8,
+      "id": "8",
       "transactionId": "DET20252",
       "senderName": "Kevin Young",
       "reciverName": "Laura Harris",
       "description": "Jewelry",
       "weight": 1,
       "quantity": 1,
-      "Price": 1000.0,
+      "Price": 1000,
       "senderAddress": "Jacksonville, FL",
       "reciverAddress": "Fort Worth, TX",
       "status": "picked up",
@@ -222,14 +222,14 @@
       "addedBy": "Employee H"
     },
     {
-      "id": 9,
+      "id": "9",
       "transactionId": "DET20253",
       "senderName": "Liam King",
       "reciverName": "Mia Scott",
       "description": "Tools",
       "weight": 15,
       "quantity": 4,
-      "Price": 250.0,
+      "Price": 250,
       "senderAddress": "Columbus, OH",
       "reciverAddress": "Charlotte, NC",
       "status": "Delivered",
@@ -255,14 +255,14 @@
       "addedBy": "Employee I"
     },
     {
-      "id": 10,
+      "id": "10",
       "transactionId": "DET20254",
       "senderName": "Noah Wright",
       "reciverName": "Sophia Green",
       "description": "Kitchenware",
       "weight": 12,
       "quantity": 6,
-      "Price": 180.0,
+      "Price": 180,
       "senderAddress": "Indianapolis, IN",
       "reciverAddress": "Denver, CO",
       "status": "Pending",
@@ -283,14 +283,14 @@
       "addedBy": "Employee J"
     },
     {
-      "id": 11,
+      "id": "11",
       "transactionId": "DET20255",
       "senderName": "Olivia Brown",
       "reciverName": "William Davis",
       "description": "Gardening Supplies",
       "weight": 25,
       "quantity": 7,
-      "Price": 220.0,
+      "Price": 220,
       "senderAddress": "San Francisco, CA",
       "reciverAddress": "Las Vegas, NV",
       "status": "picked up",
@@ -319,31 +319,86 @@
       "senderEmail": "olivia.brown@example.com",
       "reciverEmail": "william.davis@example.com",
       "addedBy": "Employee K"
+    },
+    {
+      "id": "",
+      "createdAt": "",
+      "addedBy": "Eyosi",
+      "senderName": "",
+      "reciverName": "",
+      "description": "",
+      "senderAddress": "",
+      "reciverAddress": "",
+      "senderPhoneNumber": "",
+      "reciverPhoneNumber": "",
+      "senderEmail": "",
+      "reciverEmail": "",
+      "weight": 0,
+      "quantity": 1,
+      "status": ""
+    },
+    {
+      "id": "a083c639-644d-4e01-a3cc-096b90ec70d9",
+      "senderName": "Rafael Moss",
+      "reciverName": "Amal Rodriquez",
+      "description": "Eu totam error eos ",
+      "senderAddress": "Dire Dawa",
+      "reciverAddress": "Mekelle",
+      "paymentMethod": "On Delivery",
+      "senderPhoneNumber": "+251 (9) 1973-5142",
+      "reciverPhoneNumber": "+251 (9) 6888-5835",
+      "senderEmail": "qahafel@mailinator.com",
+      "reciverEmail": "bywuty@mailinator.com",
+      "weight": 41,
+      "quantity": 68,
+      "createdAt": "March 5, 2025",
+      "transactionId": "DTE32161",
+      "status": "Pending",
+      "Price": 557600
+    },
+    {
+      "id": "c532f8ad-921a-43f2-9473-025b5411415d",
+      "senderName": "Flavia Beck",
+      "reciverName": "Desirae Walker",
+      "description": "Et adipisicing exerc",
+      "senderAddress": "Bahir Dar",
+      "reciverAddress": "Hawassa",
+      "paymentMethod": "On Delivery",
+      "senderPhoneNumber": "+251 (9) 3729-4117",
+      "reciverPhoneNumber": "+251 (9) 8244-3753",
+      "senderEmail": "loxil@mailinator.com",
+      "reciverEmail": "vokexixus@mailinator.com",
+      "weight": 75,
+      "quantity": 401,
+      "createdAt": "March 5, 2025",
+      "transactionId": "DTE70782",
+      "status": "Pending",
+      "Price": 6015000
     }
   ],
   "cities": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Addis Ababa"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Dire Dawa"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Mekelle"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Gondar"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Bahir Dar"
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Hawassa"
     }
   ]

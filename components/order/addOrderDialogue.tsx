@@ -19,6 +19,7 @@ import { v4 as uuidv4 } from 'uuid';
 import ConfirmModal from './confirmModal';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+import { AddOrder } from '@/actions/order';
 type props = {
   cities: city[];
   showNewOrderModal: boolean;
@@ -38,9 +39,10 @@ export default function AddOrderDialogue({
   showRecipet,
   setShowRecipt,
 }: props) {
-  const [currentOrder, setCurrentOrder] = useState<
-    Omit<Order, 'id' | 'statuses' | 'createdAt' | 'addedBy'>
-  >({
+  const [currentOrder, setCurrentOrder] = useState<Order>({
+    id: '',
+    createdAt: '',
+    addedBy: 'Eyosi',
     senderName: '',
     reciverName: '',
     description: '',
@@ -73,7 +75,9 @@ export default function AddOrderDialogue({
     }
   };
 
-  const onSubmit: SubmitHandler<z.infer<typeof addFormSchema>> = (data) => {
+  const onSubmit: SubmitHandler<z.infer<typeof addFormSchema>> = async (
+    data
+  ) => {
     console.log('Form data submitted:', data); // Log form data
     const totalPrice = priceCalculator(data.weight, data.quantity);
     const date = new Date();
@@ -92,7 +96,13 @@ export default function AddOrderDialogue({
     setShowNewOrderModal(false);
     setShowConfirmationModal(true);
   };
-  const submitting = () => {
+  const submitting = async () => {
+    try {
+      const response = await AddOrder(currentOrder);
+      console.log('responseFromadd', response);
+    } catch (error) {
+      console.log(error);
+    }
     setShowConfirmationModal(false);
     setShowRecipt(true);
   };
