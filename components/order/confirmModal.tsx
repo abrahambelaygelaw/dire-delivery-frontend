@@ -1,5 +1,5 @@
 import { Order } from '@/types/orderType';
-
+import handlePrint from './orderPrint';
 type props = {
   currentOrder: Order;
   setShowRecipt: React.Dispatch<React.SetStateAction<boolean>>;
@@ -182,6 +182,7 @@ export default function ConfirmModal({ currentOrder, setShowRecipt }: props) {
 
         <div className="flex justify-end sm:justify-end w-full mt-4">
           <button
+            onClick={() => handlePrint(currentOrder)}
             type="submit"
             className="text-white w-full text-base bg-[#060A87] py-6"
           >
