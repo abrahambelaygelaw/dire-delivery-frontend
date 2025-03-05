@@ -99,7 +99,6 @@ export default function AddOrderDialogue({
   console.log('Form errors:', errors);
   console.log('currentOrder:', currentOrder);
 
-  
   return (
     <>
       {showNewOrderModal && (
@@ -505,7 +504,10 @@ export default function AddOrderDialogue({
       )}
 
       {showRecipet && (
-        <ConfirmModal currentOrder={{ ...currentOrder, id: uuidv4() }} />
+        <ConfirmModal
+          currentOrder={{ ...currentOrder, id: uuidv4() }}
+          setShowRecipt={setShowRecipt}
+        />
       )}
     </>
   );

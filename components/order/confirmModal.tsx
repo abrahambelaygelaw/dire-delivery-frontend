@@ -2,9 +2,10 @@ import { Order } from '@/types/orderType';
 
 type props = {
   currentOrder: Order;
+  setShowRecipt: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function ConfirmModal({ currentOrder }: props) {
+export default function ConfirmModal({ currentOrder, setShowRecipt }: props) {
   return (
     <section className="fixed inset-0 bg-[#060A87]/20  flex items-center justify-center z-50">
       <div className="bg-white rounded-lg p-6 w-[480px]">
@@ -13,7 +14,7 @@ export default function ConfirmModal({ currentOrder }: props) {
             Order Added Successfully
           </h2>
           <button
-            onClick={() => console.log('Close modal')}
+            onClick={() => setShowRecipt(false)}
             className="text-black text-xl font-bold"
           >
             &times;
