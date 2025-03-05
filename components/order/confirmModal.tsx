@@ -1,33 +1,27 @@
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
-import { Button } from '../ui/button';
+import { Order } from '@/types/orderType';
 
-// type props = {
-//   cities: city[];
-// };
+type props = {
+  currentOrder: Order;
+};
 
-export default function ConfirmModal(type: 'button' | 'submit' | 'reset') {
+export default function ConfirmModal({ currentOrder }: props) {
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button type={type} className="text-white bg-[#27A376]">
-          Add
-        </Button>
-      </DialogTrigger>
-      <DialogContent className=" top-[48%] sm:max-w-md bg-white flex flex-col gap-4 min-w-[540px] pb-6">
-        <DialogHeader>
-          <DialogTitle className="text-xl text-[#060A87] font-semibold border-b border-[#060A87] pb-2">
-            Order Added Succesfully
-          </DialogTitle>
-        </DialogHeader>
+    <section className="fixed inset-0 bg-[#060A87]/20  flex items-center justify-center z-50">
+      <div className="bg-white rounded-lg p-6 w-[480px]">
+        <div className="flex justify-between items-center mb-4 w-full">
+          <h2 className="text-xl text-[#060A87] font-semibold border-b border-[#060A87] pb-2 w-full">
+            Order Added Successfully
+          </h2>
+          <button
+            onClick={() => console.log('Close modal')}
+            className="text-black text-xl font-bold"
+          >
+            &times;
+          </button>
+        </div>
+
         {/* Item Info */}
-        <section className="w-fill h-fit justify-start items-center inline-flex">
+        <section className="w-full h-fit justify-start items-center inline-flex">
           <div className="grow shrink basis-0 px-3 py-6 rounded-sm border border-slate-200 flex-col justify-start items-start gap-3 inline-flex">
             <div className="self-stretch px-3 py-2 justify-start items-center gap-2.5 inline-flex">
               <div className="text-black text-xl font-bold font-['Inter'] leading-tight">
@@ -36,10 +30,7 @@ export default function ConfirmModal(type: 'button' | 'submit' | 'reset') {
             </div>
             <div className="self-stretch h-[108px] px-6 flex-col justify-start items-start flex">
               <div className="self-stretch px-0.5 py-2 border-b border-gray-500 justify-start items-center gap-4 inline-flex">
-                <div
-                  className="text-black text-lg
-                                 font-bold font-['Inter'] leading-tight"
-                >
+                <div className="text-black text-lg font-bold font-['Inter'] leading-tight">
                   Item Details
                 </div>
               </div>
@@ -49,7 +40,7 @@ export default function ConfirmModal(type: 'button' | 'submit' | 'reset') {
                     Description:
                   </div>
                   <div className="grow shrink basis-0 text-zinc-500 text-sm font-medium font-['Inter'] leading-tight">
-                    Electronics{' '}
+                    {currentOrder.description}
                   </div>
                 </div>
                 <div className="self-stretch h-6 px-1.5 py-0.5 justify-start items-center gap-2.5 inline-flex">
@@ -57,8 +48,7 @@ export default function ConfirmModal(type: 'button' | 'submit' | 'reset') {
                     Weight
                   </div>
                   <div className="w-40 text-zinc-500 text-sm font-medium font-['Inter'] leading-tight">
-                    {' '}
-                    65kg
+                    {currentOrder.weight}kg
                   </div>
                 </div>
                 <div className="self-stretch h-6 px-1.5 py-0.5 justify-start items-center gap-2.5 inline-flex">
@@ -66,7 +56,7 @@ export default function ConfirmModal(type: 'button' | 'submit' | 'reset') {
                     Quantity
                   </div>
                   <div className="w-40 text-zinc-500 text-sm font-medium font-['Inter'] leading-tight">
-                    2
+                    {currentOrder.quantity}
                   </div>
                 </div>
               </div>
@@ -83,7 +73,15 @@ export default function ConfirmModal(type: 'button' | 'submit' | 'reset') {
                     Full Name
                   </div>
                   <div className="grow shrink basis-0 text-zinc-500 text-sm font-medium font-['Inter'] leading-tight">
-                    Jhon Doe{' '}
+                    {currentOrder.senderName}
+                  </div>
+                </div>
+                <div className="self-stretch h-6 px-1.5 py-0.5 justify-start items-center gap-2.5 inline-flex">
+                  <div className="w-[100px] text-black text-sm font-medium font-['Inter'] leading-tight">
+                    Email
+                  </div>
+                  <div className="w-40 text-zinc-500 text-sm font-medium font-['Inter'] leading-tight">
+                    {currentOrder.senderEmail}
                   </div>
                 </div>
                 <div className="self-stretch h-6 px-1.5 py-0.5 justify-start items-center gap-2.5 inline-flex">
@@ -91,7 +89,7 @@ export default function ConfirmModal(type: 'button' | 'submit' | 'reset') {
                     Phone Number
                   </div>
                   <div className="w-40 text-zinc-500 text-sm font-medium font-['Inter'] leading-tight">
-                    +25197324647722
+                    {currentOrder.senderPhoneNumber}
                   </div>
                 </div>
                 <div className="self-stretch h-6 px-1.5 py-0.5 justify-start items-center gap-2.5 inline-flex">
@@ -99,7 +97,7 @@ export default function ConfirmModal(type: 'button' | 'submit' | 'reset') {
                     Address
                   </div>
                   <div className="w-40 text-zinc-500 text-sm font-medium font-['Inter'] leading-tight">
-                    Addis Ababa
+                    {currentOrder.senderAddress}
                   </div>
                 </div>
               </div>
@@ -116,7 +114,15 @@ export default function ConfirmModal(type: 'button' | 'submit' | 'reset') {
                     Full Name
                   </div>
                   <div className="grow shrink basis-0 text-zinc-500 text-sm font-medium font-['Inter'] leading-tight">
-                    Yakob{' '}
+                    {currentOrder.reciverName}
+                  </div>
+                </div>
+                <div className="self-stretch h-6 px-1.5 py-0.5 justify-start items-center gap-2.5 inline-flex">
+                  <div className="w-[100px] text-black text-sm font-medium font-['Inter'] leading-tight">
+                    Email
+                  </div>
+                  <div className="w-40 text-zinc-500 text-sm font-medium font-['Inter'] leading-tight">
+                    {currentOrder.reciverEmail}
                   </div>
                 </div>
                 <div className="self-stretch h-6 px-1.5 py-0.5 justify-start items-center gap-2.5 inline-flex">
@@ -124,7 +130,7 @@ export default function ConfirmModal(type: 'button' | 'submit' | 'reset') {
                     Phone Number
                   </div>
                   <div className="w-40 text-zinc-500 text-sm font-medium font-['Inter'] leading-tight">
-                    25197324647722
+                    {currentOrder.reciverPhoneNumber}
                   </div>
                 </div>
                 <div className="self-stretch h-6 px-1.5 py-0.5 justify-start items-center gap-2.5 inline-flex">
@@ -132,7 +138,7 @@ export default function ConfirmModal(type: 'button' | 'submit' | 'reset') {
                     Address
                   </div>
                   <div className="w-40 text-zinc-500 text-sm font-medium font-['Inter'] leading-tight">
-                    Bahirdar
+                    {currentOrder.reciverAddress}
                   </div>
                 </div>
               </div>
@@ -146,10 +152,10 @@ export default function ConfirmModal(type: 'button' | 'submit' | 'reset') {
               <div className="self-stretch h-[72px] px-1 flex-col justify-start items-start flex">
                 <div className="self-stretch h-6 px-1.5 py-0.5 justify-start items-center gap-2.5 inline-flex">
                   <div className="w-[100px] text-black text-sm font-medium font-['Inter'] leading-tight">
-                    Transaction Id:{' '}
+                    Transaction Id:
                   </div>
                   <div className="grow shrink basis-0 text-zinc-500 text-sm font-medium font-['Inter'] leading-tight">
-                    TXD332002{' '}
+                    {currentOrder.transactionId}
                   </div>
                 </div>
                 <div className="self-stretch h-6 px-1.5 py-0.5 justify-start items-center gap-2.5 inline-flex">
@@ -157,8 +163,7 @@ export default function ConfirmModal(type: 'button' | 'submit' | 'reset') {
                     Total Price
                   </div>
                   <div className="w-40 text-zinc-500 text-sm font-medium font-['Inter'] leading-tight">
-                    {' '}
-                    336.5 birr
+                    {currentOrder.Price}
                   </div>
                 </div>
                 <div className="self-stretch h-6 px-1.5 py-0.5 justify-start items-center gap-2.5 inline-flex">
@@ -166,7 +171,7 @@ export default function ConfirmModal(type: 'button' | 'submit' | 'reset') {
                     Payment Method
                   </div>
                   <div className="w-40 text-zinc-500 text-sm font-medium font-['Inter'] leading-tight">
-                    On cash
+                    {currentOrder.paymentMethod}
                   </div>
                 </div>
               </div>
@@ -174,15 +179,15 @@ export default function ConfirmModal(type: 'button' | 'submit' | 'reset') {
           </div>
         </section>
 
-        <DialogFooter className="flex justify-end sm:justify-end w-full">
-          <Button
+        <div className="flex justify-end sm:justify-end w-full mt-4">
+          <button
             type="submit"
-            className="text-white  w-full text-base bg-[#060A87] py-6"
+            className="text-white w-full text-base bg-[#060A87] py-6"
           >
-            Print Reciept
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+            Print Receipt
+          </button>
+        </div>
+      </div>
+    </section>
   );
 }

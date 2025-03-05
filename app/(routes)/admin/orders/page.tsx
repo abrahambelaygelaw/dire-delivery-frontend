@@ -15,6 +15,7 @@ export default function Page() {
   const [showNewOrderModal, setShowNewOrderModal] = useState<boolean>(false);
   const [showConfirmationModal, setShowConfirmationModal] =
     useState<boolean>(false);
+  const [showRecipet, setShowRecipt] = useState<boolean>(false);
   useEffect(() => {
     const fetchOrders = async () => {
       try {
@@ -75,6 +76,8 @@ export default function Page() {
           showConfirmationModal={showConfirmationModal}
           setShowConfirmationModal={setShowConfirmationModal}
           cities={cities}
+          showRecipet={showRecipet}
+          setShowRecipt={setShowRecipt}
         />
         {/* Datatable */}
         <DataTable
