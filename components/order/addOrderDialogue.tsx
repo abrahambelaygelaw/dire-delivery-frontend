@@ -114,20 +114,20 @@ export default function AddOrderDialogue({
     <>
       {showNewOrderModal && (
         <div className="fixed inset-0 bg-[#060A87] bg-opacity-30 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-2xl">
+          <div className="bg-white rounded-lg p-6 w-full h-fit max-w-2xl">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold">Add New Order</h2>
               <button onClick={() => setShowNewOrderModal(false)} title="Close">
                 <X className="h-6 w-6" />
               </button>
             </div>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="space-y-6">
+            <form onSubmit={handleSubmit(onSubmit)} className="px-2">
+              <div className="space-y-2">
                 <div>
-                  <h1 className="text-lg text-[#060a87] font-medium border-b pb-2">
+                  <h1 className="text-lg  text-[#060a87] font-bold border-b pb-2">
                     Item Information
                   </h1>
-                  <div className="grid grid-cols-5 gap-6 mt-4">
+                  <div className="grid grid-cols-5 gap-6 mt-2 px-2">
                     <div className="col-span-3">
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Object Description
@@ -181,11 +181,11 @@ export default function AddOrderDialogue({
                 </div>
 
                 {/* Repeat similar blocks for Sender and Receiver Information */}
-                <div>
-                  <h3 className="text-lg text-[#060a87] font-medium border-b pb-2">
+                <div className="mt-2">
+                  <h3 className="text-lg text-[#060a87] font-bold border-b pb-2">
                     Sender Information
                   </h3>
-                  <div className="grid grid-cols-2 gap-4 mt-4">
+                  <div className="grid grid-cols-2 gap-4 mt-2 px-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Name
@@ -219,7 +219,7 @@ export default function AddOrderDialogue({
                       )}
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 gap-4 mt-4">
+                  <div className="grid grid-cols-2 gap-4 mt-2 px-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Phone Number
@@ -267,10 +267,10 @@ export default function AddOrderDialogue({
                 </div>
 
                 <div>
-                  <h3 className="text-lg text-[#060a87] font-medium border-b pb-2">
+                  <h3 className="text-lg  text-[#060a87] font-bold border-b pb-2 mt-2">
                     Receiver Information
                   </h3>
-                  <div className="grid grid-cols-2 gap-4 mt-4">
+                  <div className="grid grid-cols-2 gap-4 mt-2 px-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Name
@@ -304,7 +304,7 @@ export default function AddOrderDialogue({
                       )}
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 gap-4 mt-4">
+                  <div className="grid grid-cols-2 gap-4 mt-2 px-2 ">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Phone Number
@@ -349,29 +349,29 @@ export default function AddOrderDialogue({
                       )}
                     </div>
                   </div>
-                  <div className="flex flex-col py-4">
-                    <h3 className="font-bold text-lg border-b-2 py-2 text-[#060A87]">
+                  <div className="flex flex-col py-2 mt-2 ">
+                    <h3 className="font-bold text-lg border-b-2 text-[#060A87]">
                       Payment Method
                     </h3>
-                    <div className="space-y-2 flex flex-col px-10 py-2">
-                      <label className="flex">
+                    <div className=" py-3 px-2 gap-2 flex items-center ">
+                      <div className="flex h-full">
                         <input
                           type="radio"
                           value="Now"
                           {...register('paymentMethod')}
                           className="mr-2"
                         />
-                        Pay Now
-                      </label>
-                      <label className="flex">
+                        <label>Pay Now</label>
+                      </div>
+                      <div className="flex h-full">
                         <input
                           type="radio"
                           value="On Delivery"
                           {...register('paymentMethod')}
                           className="mr-2"
                         />
-                        Pay on Delivery
-                      </label>
+                        <label>Pay on Delivery</label>
+                      </div>
                     </div>
                     {errors.paymentMethod && (
                       <p className="text-red-500 text-sm">
@@ -380,8 +380,29 @@ export default function AddOrderDialogue({
                     )}
                   </div>
                 </div>
+                <div className="h-12 py-1.5 justify-start items-center gap-1.5 inline-flex">
+                  <div className="text-[#060a87] text-2xl font-bold leading-tight">
+                    Total:
+                  </div>
+                  <div className="w-[280px] h-9 justify-start items-center gap-2 flex">
+                    <div className="grow shrink basis-0 flex-col justify-start items-start gap-1.5 inline-flex">
+                      <div className="self-stretch pl-3 pr-14 py-2 rounded-md border border-slate-200 justify-start items-center inline-flex">
+                        <div className="grow shrink basis-0 px-1.5 flex-col justify-end items-start gap-2.5 inline-flex">
+                          <div className="text-black text-lg font-bold leading-[18px]">
+                            {priceCalculator(
+                              watch('weight') || 0,
+                              watch('quantity') || 1
+                            ).toFixed(2)}{' '}
+                            birr
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex justify-end gap-4 mt-2">
+                  <div></div>
 
-                <div className="flex justify-end gap-4 mt-6">
                   <button
                     type="button"
                     onClick={() => setShowNewOrderModal(false)}
