@@ -20,12 +20,13 @@ export default function Page() {
   const [showEditInfoModal, setShowEditInfoModal] = useState<boolean>(false);
   const [triggerState, setStateTrigger] = useState<boolean>(false);
 
-  // const [showConfirmInfo, setShowConfirmInfo] = useState<boolean>(false);
+  const [showConfirmInfo, setShowConfirmInfo] = useState<boolean>(false);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<z.infer<typeof helpForm>>({
     resolver: zodResolver(helpForm),
   });
@@ -52,16 +53,28 @@ export default function Page() {
         location: data.location,
       },
     };
+    setHelp(updatedHelp);
+    setShowEditInfoModal(false);
+    setShowConfirmInfo(true);
+    console.log('Updated help data:', updatedHelp); // Log updated help data
+  };
+  const handleClose = () => {
+    reset();
+    setShowConfirmInfo(false);
+    setStateTrigger(!triggerState);
+  };
+
+  const submitting = async () => {
     try {
-      const response = await patchHelp(updatedHelp);
+      const response = await patchHelp(help!);
       console.log('response:', response);
       setShowEditInfoModal(false);
+      setShowConfirmInfo(false);
+      reset();
       setStateTrigger(!triggerState);
     } catch (error) {
       console.log(error);
     }
-    console.log('Updated help data:', updatedHelp); // Log updated help data
-    // setHelp(updatedHelp);
   };
 
   return (
@@ -213,6 +226,65 @@ export default function Page() {
                 </div>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+      {showConfirmInfo && (
+        <div className="fixed inset-0 bg-[#060A87]/20 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 w-full max-w-2xl">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-bold">
+                {' '}
+                New Help and Support Details
+              </h2>
+              <button onClick={() => setShowConfirmInfo(false)} title="Close">
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            <div className="border px-3 py-5 grid grid-cols-2 gap-10">
+              <div className="h-full">
+                <h3 className="font-bold text-lg mb-2 pb-2 border-b-2">
+                  Email
+                </h3>
+                <div className="px-3 flex flex-col gap-1">
+                  <p>{help?.item.email}</p>
+                </div>
+              </div>
+
+              <div className="h-full">
+                <h3 className="font-bold text-lg mb-2 pb-2 border-b-2">
+                  Phone
+                </h3>
+                <div className="px-3 flex flex-col gap-1">
+                  <p>{help?.item.phone}</p>
+                </div>
+              </div>
+
+              <div className="h-full">
+                <h3 className="font-bold text-lg mb-2 pb-2 border-b-2">
+                  Location
+                </h3>
+                <div className="px-3 flex flex-col gap-1">
+                  <p>{help?.item.location}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex justify-end gap-2">
+              <button
+                onClick={handleClose}
+                className="px-4 py-2 border rounded-lg hover:bg-gray-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={submitting}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              >
+                Place Order
+              </button>
+            </div>
           </div>
         </div>
       )}

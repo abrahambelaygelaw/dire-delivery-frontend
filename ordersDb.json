@@ -539,6 +539,26 @@
       "status": "Pending",
       "Price": 2928800,
       "addedBy": "Eyosi"
+    },
+    {
+      "id": "4ae5a94a-13ff-4c17-987e-8c79953e6791",
+      "senderName": "Eyosias Solomon Lale",
+      "reciverName": "Eyosias Solomon Lale",
+      "description": "Soda",
+      "senderAddress": "Addis Ababa",
+      "reciverAddress": "Mekelle",
+      "paymentMethod": "Now",
+      "senderPhoneNumber": "0972729423",
+      "reciverPhoneNumber": "0972729423",
+      "senderEmail": "eyosila123@gmail.com",
+      "reciverEmail": "eyosila123@gmail.com",
+      "weight": 1,
+      "quantity": 1,
+      "createdAt": "March 6, 2025",
+      "transactionId": "DTE23388",
+      "status": "Pending",
+      "Price": 200,
+      "addedBy": "Eyosi"
     }
   ],
   "cities": [
@@ -569,7 +589,7 @@
   ],
   "help_support": {
     "item": {
-      "email": "eyosila123@gmail.com",
+      "email": "eyosias.solomon-ug@aau.edu.et",
       "phone": "+251972729423",
       "location": "5kilo AddisAbaba"
     }
