@@ -79,7 +79,7 @@ export default function Page() {
 
   return (
     <>
-      <div className="min-h-screen bg-[#f0f1fa] flex p-10">
+      <div className="h-screen bg-[#f0f1fa] flex p-6 md:p-10">
         <div className="w-full">
           <div className="mb-6">
             <h1 className="text-3xl font-bold text-[#0a0f8a]">
@@ -90,61 +90,63 @@ export default function Page() {
             </p>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm p-8">
+          <div className="bg-white w-full rounded-lg shadow-sm p-8">
             <h2 className="text-xl font-semibold text-gray-800 mb-4">
               Help and Support
             </h2>
-            <div className="h-px bg-gray-200 mb-6"></div>
+            <div className="h-px bg-gray-200 mb-6"> </div>
 
-            <div className="space-y-6">
-              <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
-                  <Mail className="h-5 w-5 text-blue-600" />
+            <div className="md:w-[480px] ">
+              <div className="space-y-6 flex flex-col p-2 gap-2">
+                <div className="flex items-center">
+                  <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                    <Mail className="h-5 w-5 text-blue-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-gray-900">Email Support</h3>
+                    <p className="text-gray-500">{help?.item.email}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-medium text-gray-900">Email Support</h3>
-                  <p className="text-gray-500">{help?.item.email}</p>
+
+                <div className="flex items-center">
+                  <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                    <Phone className="h-5 w-5 text-blue-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-gray-900">Phone Support</h3>
+                    <p className="text-gray-500">{help?.item.phone}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center">
+                  <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                    <MapPin className="h-5 w-5 text-blue-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-gray-900">Location</h3>
+                    <p className="text-gray-500">{help?.item.location}</p>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
-                  <Phone className="h-5 w-5 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-gray-900">Phone Support</h3>
-                  <p className="text-gray-500">{help?.item.phone}</p>
-                </div>
+              <div className="mt-8  flex justify-end ">
+                <Button
+                  onClick={() => setShowEditInfoModal(true)}
+                  className="inline-flex items-center px-4 py-2 bg-[#0a0f8a] text-white rounded-md hover:bg-[#0a0f8a]/90 transition-colors"
+                >
+                  <Edit className="h-4 w-4 mr-2" />
+                  Edit Info
+                </Button>
               </div>
-
-              <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
-                  <MapPin className="h-5 w-5 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-gray-900">Location</h3>
-                  <p className="text-gray-500">{help?.item.location}</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-8 flex justify-center">
-              <Button
-                onClick={() => setShowEditInfoModal(true)}
-                className="inline-flex items-center px-4 py-2 bg-[#0a0f8a] text-white rounded-md hover:bg-[#0a0f8a]/90 transition-colors"
-              >
-                <Edit className="h-4 w-4 mr-2" />
-                Edit Info
-              </Button>
             </div>
           </div>
         </div>
       </div>
       {showEditInfoModal && (
         <div className="fixed inset-0 bg-[#060A87] bg-opacity-30 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full h-fit max-w-2xl">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold">Edit Info</h2>
+          <div className="bg-white rounded-lg p-6 w-[380px] md:w-full h-fit md:max-w-md ">
+            <div className="flex justify-between items-center mb-4 border-b pb-2">
+              <h2 className="text-xl font-bold  text-[#060a87] ">Edit Info</h2>
               <button onClick={() => setShowEditInfoModal(false)} title="Close">
                 <X className="h-6 w-6" />
               </button>
@@ -153,9 +155,6 @@ export default function Page() {
               <div className="space-y-2">
                 {/* Repeat similar blocks for Sender and Receiver Information */}
                 <div className="mt-2">
-                  <h3 className="text-lg text-[#060a87] font-bold border-b pb-2">
-                    Help and Support Information
-                  </h3>
                   <div className="flex flex-col gap-4 mt-2 px-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -221,7 +220,7 @@ export default function Page() {
                     type="submit"
                     className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
                   >
-                    Continue
+                    Change
                   </button>
                 </div>
               </div>
@@ -231,9 +230,9 @@ export default function Page() {
       )}
       {showConfirmInfo && (
         <div className="fixed inset-0 bg-[#060A87]/20 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-2xl">
+          <div className="bg-white rounded-lg p-6  w-[320px]md:max-w-md">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold">
+              <h2 className="text-xl font-bold text-[#060A87]">
                 {' '}
                 New Help and Support Details
               </h2>
@@ -242,7 +241,7 @@ export default function Page() {
               </button>
             </div>
 
-            <div className="border px-3 py-5 grid grid-cols-2 gap-10">
+            <div className="border px-5 py-5 flex flex-col gap-6">
               <div className="h-full">
                 <h3 className="font-bold text-lg mb-2 pb-2 border-b-2">
                   Email
@@ -271,7 +270,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="flex justify-end gap-2">
+            <div className="flex justify-end gap-2 mt-6">
               <button
                 onClick={handleClose}
                 className="px-4 py-2 border rounded-lg hover:bg-gray-50"
@@ -282,7 +281,7 @@ export default function Page() {
                 onClick={submitting}
                 className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
               >
-                Place Order
+                Confirm
               </button>
             </div>
           </div>
