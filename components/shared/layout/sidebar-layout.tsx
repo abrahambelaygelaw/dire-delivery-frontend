@@ -58,6 +58,7 @@ export default function SidebarLayout() {
   useEffect(() => {
     const matchedItem = menuItems.find((item) => pathname == item.url);
     setSelectedItem(matchedItem ? matchedItem.title : '');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]); // Re-run when pathname changes
 
   return (
