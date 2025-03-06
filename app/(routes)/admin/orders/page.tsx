@@ -47,14 +47,14 @@ export default function Page() {
   console.log(`orders:`, orders);
 
   return (
-    <section className="w-full px-8 py-4 bg-[#F1F2F8]">
+    <section className="w-full px-4 md:px-8 py-4 bg-[#F1F2F8]">
       {/* Welcome Section */}
       <div className="h-fit justify-start items-center gap-9 inline-flex">
         <div className="flex-col justify-start items-start gap-2 inline-flex">
-          <div className="self-stretch text-[#060A87] text-3xl font-extrabold font-['Manrope'] leading-[36px]">
+          <div className="self-stretch text-[#060A87] text-2xl md:text-3xl font-extrabold font-['Manrope'] leading-[36px]">
             Welcome Back, Owner!
           </div>
-          <div className="self-stretch text-[#495d85] text-base font-extrabold font-['Manrope'] leading-tight">
+          <div className="self-stretch text-[#495d85] text-sm md:text-base font-extrabold font-['Manrope'] leading-tight">
             Here’s your Orders Report
           </div>
         </div>

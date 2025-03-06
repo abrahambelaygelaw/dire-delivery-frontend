@@ -57,12 +57,31 @@ export default function AddOrderDialogue({
     quantity: 1,
     status: '',
   });
+  const [recieptOrder, setReipetOrder] = useState<Order>({
+    id: '',
+    createdAt: '',
+    addedBy: 'Eyosi',
+    senderName: '',
+    reciverName: '',
+    description: '',
+    senderAddress: '',
+    reciverAddress: '',
+    paymentMethod: undefined,
+    senderPhoneNumber: '',
+    reciverPhoneNumber: '',
+    senderEmail: '',
+    reciverEmail: '',
+    weight: 0,
+    quantity: 1,
+    status: '',
+  });
   const {
     register,
     handleSubmit,
     formState: { errors },
     setValue,
     watch,
+    reset,
   } = useForm<z.infer<typeof addFormSchema>>({
     resolver: zodResolver(addFormSchema),
   });
@@ -101,11 +120,53 @@ export default function AddOrderDialogue({
     try {
       const response = await AddOrder(currentOrder);
       console.log('responseFromadd', response);
+      setReipetOrder(currentOrder);
+      setShowConfirmationModal(false);
+      setShowRecipt(true);
+      setCurrentOrder({
+        id: '',
+        createdAt: '',
+        addedBy: 'Eyosi',
+        senderName: '',
+        reciverName: '',
+        description: '',
+        senderAddress: '',
+        reciverAddress: '',
+        paymentMethod: undefined,
+        senderPhoneNumber: '',
+        reciverPhoneNumber: '',
+        senderEmail: '',
+        reciverEmail: '',
+        weight: 0,
+        quantity: 1,
+        status: '',
+      });
+      reset();
     } catch (error) {
       console.log(error);
     }
-    setShowConfirmationModal(false);
-    setShowRecipt(true);
+  };
+  const handleClose = () => {
+    setCurrentOrder({
+      id: '',
+      createdAt: '',
+      addedBy: 'Eyosi',
+      senderName: '',
+      reciverName: '',
+      description: '',
+      senderAddress: '',
+      reciverAddress: '',
+      paymentMethod: undefined,
+      senderPhoneNumber: '',
+      reciverPhoneNumber: '',
+      senderEmail: '',
+      reciverEmail: '',
+      weight: 0,
+      quantity: 1,
+      status: '',
+    });
+    setShowNewOrderModal(false);
+    reset();
   };
   console.log('Form errors:', errors);
   console.log('currentOrder:', currentOrder);
@@ -117,7 +178,7 @@ export default function AddOrderDialogue({
           <div className="bg-white rounded-lg p-6 w-full h-fit max-w-2xl">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold">Add New Order</h2>
-              <button onClick={() => setShowNewOrderModal(false)} title="Close">
+              <button onClick={() => handleClose()} title="Close">
                 <X className="h-6 w-6" />
               </button>
             </div>
@@ -537,7 +598,7 @@ export default function AddOrderDialogue({
 
       {showRecipet && (
         <ConfirmModal
-          currentOrder={{ ...currentOrder, id: uuidv4() }}
+          currentOrder={{ ...recieptOrder, id: uuidv4() }}
           setShowRecipt={setShowRecipt}
         />
       )}

@@ -10,7 +10,7 @@ export type Order = {
   senderAddress: string;
   reciverAddress: string;
   status: string;
-  createdAt?: string;
+  createdAt: string;
   updatedAt?: string;
   paymentMethod?: string;
   statuses?: {

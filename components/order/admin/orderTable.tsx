@@ -55,7 +55,7 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className='w-full'>
+    <div className="w-full">
       <div className="flex items-center py-4 gap-4">
         <Input
           placeholder="Search by name"
@@ -139,7 +139,7 @@ export function DataTable<TData, TValue>({
         </Table>
       </div>
       <div className="flex items-center justify-between space-x-2 py-4">
-        <div className="text-sm text-muted-foreground">
+        <div className=" hidden md:block text-sm text-muted-foreground">
           Showing {table.getRowModel().rows.length} of {totalEntries} entries
         </div>
         <div className="flex items-center space-x-2">
