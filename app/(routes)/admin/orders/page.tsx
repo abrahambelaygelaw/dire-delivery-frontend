@@ -1,8 +1,9 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { Order } from '@/types/orderType';
-import { FetchOrders } from '@/actions/order';
+import { DeleteOrder, FetchOrders } from '@/actions/order';
 import { columns } from '@/components/order/admin/column';
+import { ColumnDef } from '@tanstack/react-table';
 import { DataTable } from '@/components/order/admin/orderTable';
 import AddOrderDialogue from '@/components/order/addOrderDialogue';
 import { city } from '@/types/cities';
@@ -42,6 +43,12 @@ export default function Page() {
     fetchCities();
   }, []);
 
+  const handleDelete = async (id: string) => {
+    console.log('about to delete:', id);
+    const response = await DeleteOrder(id);
+    console.log(response);
+  };
+
   console.log('city:', cities);
 
   console.log(`orders:`, orders);
@@ -79,11 +86,16 @@ export default function Page() {
           showRecipet={showRecipet}
           setShowRecipt={setShowRecipt}
         />
-        {/* Datatable */}
         <DataTable
-          columns={columns}
+          columns={
+            columns as ColumnDef<
+              { transactionId: string; id: string },
+              unknown
+            >[]
+          }
           data={orders}
           totalEntries={orders.length}
+          handleDelete={handleDelete}
         />
       </section>
     </section>

@@ -28,19 +28,50 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 
-interface DataTableProps<TData, TValue> {
+import Link from 'next/link';
+import { LuEye } from 'react-icons/lu';
+import { RiDeleteBin5Line } from 'react-icons/ri';
+
+interface DataTableProps<TData extends { id: string }, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   totalEntries: number;
+  handleDelete: (id: string) => void;
 }
 
-export function DataTable<TData, TValue>({
+export function DataTable<
+  TData extends {
+    transactionId: string;
+    id: string;
+  },
+  TValue,
+>({
   columns,
   data,
   totalEntries,
+  handleDelete,
 }: DataTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [openAlertDialogId, setOpenAlertDialogId] = useState<string | null>(
+    null
+  ); // Track which row's AlertDialog is open
 
   const table = useReactTable({
     data,
@@ -105,6 +136,7 @@ export function DataTable<TData, TValue>({
                     </TableHead>
                   );
                 })}
+                <TableHead>Actions</TableHead>
               </TableRow>
             ))}
           </TableHeader>
@@ -123,6 +155,72 @@ export function DataTable<TData, TValue>({
                       )}
                     </TableCell>
                   ))}
+                  <TableCell>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="icon" className="h-8 w-8">
+                          <span className="text-lg">⋮</span>{' '}
+                          {/* Three-dot button */}
+                        </Button>
+                      </DropdownMenuTrigger>
+
+                      <DropdownMenuContent align="end" className="w-40">
+                        <Link
+                          href={`/admin/orders/${row.original.transactionId}`}
+                          passHref
+                        >
+                          <DropdownMenuItem className="cursor-pointer">
+                            <LuEye className="mr-2 h-4 w-4" />
+                            View
+                          </DropdownMenuItem>
+                        </Link>
+
+                        <DropdownMenuItem
+                          className="cursor-pointer text-red-600 hover:bg-red-100"
+                          onSelect={(e) => {
+                            e.preventDefault(); // Prevent the dropdown from closing
+                            setOpenAlertDialogId(row.original.transactionId); // Open the AlertDialog for this row
+                          }}
+                        >
+                          <RiDeleteBin5Line className="mr-2 h-4 w-4" />
+                          Delete
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+
+                    {/* AlertDialog for the row */}
+                    <AlertDialog
+                      open={openAlertDialogId === row.original.transactionId}
+                      onOpenChange={(open) => {
+                        if (!open) setOpenAlertDialogId(null); // Close the AlertDialog
+                      }}
+                    >
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle className="text-[#060A87]">
+                            Are you absolutely sure?
+                          </AlertDialogTitle>
+                          <AlertDialogDescription>
+                            This action cannot be undone. This will permanently
+                            delete your account and remove your data from our
+                            servers.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction
+                            onClick={() => {
+                              handleDelete(row.original.id); // Perform the delete action
+                              setOpenAlertDialogId(null); // Close the AlertDialog
+                            }}
+                            className="bg-[#060A87]"
+                          >
+                            Continue
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                  </TableCell>
                 </TableRow>
               ))
             ) : (

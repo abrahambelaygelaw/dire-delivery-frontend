@@ -35,3 +35,28 @@ export const AddOrder = async (data: Order) => {
   console.log('postResponse:', response);
   return response;
 };
+
+export const DeleteOrder = async (id: string) => {
+  console.log('Deleting', id);
+  const fetchURl = `${url}/${id}`;
+  console.log('Delete URL', fetchURl);
+
+  try {
+    const response = await apiCall({ url: fetchURl, method: 'DELETE' });
+
+    // Handle the response based on its type
+    if (typeof response === 'string') {
+      console.log('Delete response (non-JSON):', response);
+      return { success: true, message: response };
+    } else {
+      console.log('Delete response (JSON):', response);
+      return response;
+    }
+  } catch (error) {
+    console.error('Error deleting order:', error);
+    return {
+      success: false,
+      message: 'An error occurred while deleting the order.',
+    };
+  }
+};

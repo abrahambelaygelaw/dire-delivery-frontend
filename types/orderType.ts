@@ -1,6 +1,6 @@
 export type Order = {
   id: string;
-  transactionId?: string;
+  transactionId: string;
   senderName: string;
   reciverName: string;
   description: string;

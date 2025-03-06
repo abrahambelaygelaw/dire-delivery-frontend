@@ -539,26 +539,6 @@
       "status": "Pending",
       "Price": 2928800,
       "addedBy": "Eyosi"
-    },
-    {
-      "id": "64fa8761-4b87-49c8-98d8-7956d7b1950e",
-      "senderName": "Jescie Stone",
-      "reciverName": "Iris Hanson",
-      "description": "Ex id velit elit n",
-      "senderAddress": "Gondar",
-      "reciverAddress": "Dire Dawa",
-      "paymentMethod": "Now",
-      "senderPhoneNumber": "+251 (9) 5396-3174",
-      "reciverPhoneNumber": "+251 (9) 3588-2679",
-      "senderEmail": "qyzytygyke@mailinator.com",
-      "reciverEmail": "saromet@mailinator.com",
-      "weight": 34,
-      "quantity": 352,
-      "createdAt": "March 5, 2025",
-      "transactionId": "DTE48470",
-      "status": "Pending",
-      "Price": 2393600,
-      "addedBy": "Eyosi"
     }
   ],
   "cities": [
