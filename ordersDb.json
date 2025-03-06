@@ -566,5 +566,12 @@
       "id": "6",
       "name": "Hawassa"
     }
-  ]
+  ],
+  "help_support": {
+    "item": {
+      "email": "eyosila123@gmail.com",
+      "phone": "+251972729423",
+      "location": "5kilo AddisAbaba"
+    }
+  }
 }

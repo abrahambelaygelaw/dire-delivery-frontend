@@ -55,6 +55,7 @@ export default function AddOrderDialogue({
     reciverEmail: '',
     weight: 0,
     quantity: 1,
+    transactionId: '',
     status: '',
   });
   const [recieptOrder, setReipetOrder] = useState<Order>({
@@ -73,6 +74,7 @@ export default function AddOrderDialogue({
     reciverEmail: '',
     weight: 0,
     quantity: 1,
+    transactionId: '',
     status: '',
   });
   const {
@@ -139,6 +141,7 @@ export default function AddOrderDialogue({
         reciverEmail: '',
         weight: 0,
         quantity: 1,
+        transactionId: '',
         status: '',
       });
       reset();
@@ -163,6 +166,7 @@ export default function AddOrderDialogue({
       reciverEmail: '',
       weight: 0,
       quantity: 1,
+      transactionId: '',
       status: '',
     });
     setShowNewOrderModal(false);
