@@ -1,6 +1,6 @@
 'use client';
 
-import { Mail, Phone, MapPin, Edit, X } from 'lucide-react';
+import { Mail, Phone, MapPin, Edit } from 'lucide-react';
 import type { help } from '@/types/help';
 import { useEffect, useState } from 'react';
 import { HelpFetch, patchHelp } from '@/actions/help';
@@ -14,6 +14,8 @@ const helpForm = z.object({
 });
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import HelpForm from '@/components/order/admin/help/helpEdit';
+import HelpConfirm from '@/components/order/admin/help/helpConfirm';
 
 export default function Page() {
   const [help, setHelp] = useState<help>();
@@ -143,149 +145,22 @@ export default function Page() {
         </div>
       </div>
       {showEditInfoModal && (
-        <div className="fixed inset-0 bg-[#060A87] bg-opacity-30 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-[380px] md:w-full h-fit md:max-w-md ">
-            <div className="flex justify-between items-center mb-4 border-b pb-2">
-              <h2 className="text-xl font-bold  text-[#060a87] ">Edit Info</h2>
-              <button onClick={() => setShowEditInfoModal(false)} title="Close">
-                <X className="h-6 w-6" />
-              </button>
-            </div>
-            <form onSubmit={handleSubmit(onSubmit)} className="px-2">
-              <div className="space-y-2">
-                {/* Repeat similar blocks for Sender and Receiver Information */}
-                <div className="mt-2">
-                  <div className="flex flex-col gap-4 mt-2 px-2">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Email
-                      </label>
-                      <input
-                        type="text"
-                        placeholder={help?.item.email}
-                        className="w-full px-3 py-2 border rounded-lg"
-                        {...register('email')}
-                      />
-                      {errors.email && (
-                        <p className="text-red-500 text-sm">
-                          {errors.email.message}
-                        </p>
-                      )}
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Phone Number
-                      </label>
-                      <input
-                        type="text"
-                        placeholder={help?.item.phone}
-                        className="w-full px-3 py-2 border rounded-lg"
-                        {...register('phone')}
-                      />
-                      {errors.phone && (
-                        <p className="text-red-500 text-sm">
-                          {errors.phone.message}
-                        </p>
-                      )}
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Location
-                      </label>
-                      <input
-                        type="text"
-                        placeholder={help?.item.location}
-                        className="w-full px-3 py-2 border rounded-lg"
-                        {...register('location')}
-                      />
-                      {errors.location && (
-                        <p className="text-red-500 text-sm">
-                          {errors.location.message}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                </div>
-                <div className="flex justify-end gap-4 mt-2">
-                  <div></div>
-
-                  <button
-                    type="button"
-                    onClick={() => setShowEditInfoModal(false)}
-                    className="px-4 py-2 border rounded-lg hover:bg-gray-50"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-                  >
-                    Change
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
+        <HelpForm
+          setShowEditInfoModal={setShowEditInfoModal}
+          help={help!}
+          register={register}
+          handleSubmit={handleSubmit}
+          errors={errors}
+          onSubmit={onSubmit}
+        />
       )}
       {showConfirmInfo && (
-        <div className="fixed inset-0 bg-[#060A87]/20 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6  w-[320px]md:max-w-md">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold text-[#060A87]">
-                {' '}
-                New Help and Support Details
-              </h2>
-              <button onClick={() => setShowConfirmInfo(false)} title="Close">
-                <X className="h-6 w-6" />
-              </button>
-            </div>
-
-            <div className="border px-5 py-5 flex flex-col gap-6">
-              <div className="h-full">
-                <h3 className="font-bold text-lg mb-2 pb-2 border-b-2">
-                  Email
-                </h3>
-                <div className="px-3 flex flex-col gap-1">
-                  <p>{help?.item.email}</p>
-                </div>
-              </div>
-
-              <div className="h-full">
-                <h3 className="font-bold text-lg mb-2 pb-2 border-b-2">
-                  Phone
-                </h3>
-                <div className="px-3 flex flex-col gap-1">
-                  <p>{help?.item.phone}</p>
-                </div>
-              </div>
-
-              <div className="h-full">
-                <h3 className="font-bold text-lg mb-2 pb-2 border-b-2">
-                  Location
-                </h3>
-                <div className="px-3 flex flex-col gap-1">
-                  <p>{help?.item.location}</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex justify-end gap-2 mt-6">
-              <button
-                onClick={handleClose}
-                className="px-4 py-2 border rounded-lg hover:bg-gray-50"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={submitting}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-              >
-                Confirm
-              </button>
-            </div>
-          </div>
-        </div>
+        <HelpConfirm
+          setShowConfirmInfo={setShowConfirmInfo}
+          help={help!}
+          handleClose={handleClose}
+          submitting={submitting}
+        />
       )}
     </>
   );
