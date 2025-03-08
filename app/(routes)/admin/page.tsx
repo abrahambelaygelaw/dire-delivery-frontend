@@ -37,16 +37,16 @@ export default function Dashboard() {
           console.log(response);
           if (response.createdAt === today) {
             console.log('yes');
-            setOrders([...orders, response]);
+            setOrders((prevOrders) => [...prevOrders, response]);
             switch (response.status) {
               case 'Pending':
-                setPending([...pending, response]);
+                setPending((prevOrders) => [...prevOrders, response]);
                 break;
               case 'delivered':
-                setDelivered([...delivered, response]);
+                setDelivered((prevOrders) => [...prevOrders, response]);
                 break;
               case 'pickedUp':
-                setpickedUp([...pickedUp, response]);
+                setpickedUp((prevOrders) => [...prevOrders, response]);
                 break;
               default:
                 break;
