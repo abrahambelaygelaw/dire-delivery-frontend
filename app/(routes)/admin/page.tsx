@@ -31,10 +31,12 @@ import {
 } from '@/components/ui/table';
 import { JSX, useEffect, useState } from 'react';
 import { Order } from '@/types/orderType';
-import {  FetchOrders } from '@/actions/order';
+import { FetchOrders } from '@/actions/order';
 import { formatDate } from '@/lib/utils';
+import Link from 'next/link';
 export default function Dashboard() {
-  const [anOrder, setOrders] = useState<Order[]>([]);
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [pending, setPending] = useState<Order[]>([]);
 
   const today = formatDate(new Date().toDateString());
   console.log('today:', today);
@@ -48,7 +50,10 @@ export default function Dashboard() {
           if (response.createdAt === today) {
             console.log('yes');
 
-            setOrders([...anOrder, response]);
+            setOrders([...orders, response]);
+          }
+          if (response.status === 'Pending') {
+            setPending([...pending, response]);
           }
         });
       } catch (error) {
@@ -58,7 +63,8 @@ export default function Dashboard() {
     fetchOrders();
   }, []);
 
-  console.log('fetchorders:', anOrder);
+  console.log('fetchorders:', orders);
+  console.log('fetchPending:', pending);
 
   return (
     <main className="min-h-screen bg-slate-50 p-4 md:p-8">
@@ -94,7 +100,7 @@ export default function Dashboard() {
           />
           <StatCard
             title="Pending Items"
-            value={0}
+            value={pending.length}
             icon={<Clock className="h-6 w-6 text-white" />}
             color="bg-yellow-400"
           />
@@ -104,7 +110,7 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <StatCard
             title="Total Orders"
-            value={anOrder.length}
+            value={orders.length}
             icon={<Package className="h-6 w-6 text-white" />}
             color="bg-emerald-400"
           />
@@ -193,7 +199,7 @@ export default function Dashboard() {
                 {orders.map((order, index) => (
                   <TableRow key={index}>
                     <TableCell className="whitespace-nowrap">
-                      {order.id}
+                      {order.transactionId}
                     </TableCell>
                     <TableCell className="whitespace-nowrap">
                       {order.senderName}
@@ -205,13 +211,13 @@ export default function Dashboard() {
                       {order.weight}
                     </TableCell>
                     <TableCell className="whitespace-nowrap">
-                      {order.date}
+                      {order.createdAt}
                     </TableCell>
                     <TableCell className="whitespace-nowrap">
-                      {order.from}
+                      {order.senderAddress}
                     </TableCell>
                     <TableCell className="whitespace-nowrap">
-                      {order.to}
+                      {order.reciverAddress}
                     </TableCell>
                     <TableCell className="whitespace-nowrap">
                       <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">
@@ -220,13 +226,19 @@ export default function Dashboard() {
                     </TableCell>
                     <TableCell className="whitespace-nowrap">
                       <div className="flex gap-2">
-                        <Button
-                          size="icon"
-                          variant="ghost"
-                          className="h-8 w-8 bg-green-100 hover:bg-green-200 text-green-600 rounded-md"
+                        <Link
+                          href={`/admin/orders/${order.transactionId}`}
+                          passHref
                         >
-                          <Eye className="h-4 w-4" />
-                        </Button>
+                          <Button
+                            size="icon"
+                            variant="ghost"
+                            className="h-8 w-8 bg-green-100 hover:bg-green-200 text-green-600 rounded-md"
+                          >
+                            <Eye className="h-4 w-4" />
+                          </Button>
+                        </Link>
+
                         <Button
                           size="icon"
                           variant="ghost"
@@ -323,77 +335,77 @@ function StatCard({ title, value, icon, color }: StatCard) {
   );
 }
 
-const orders = [
-  {
-    id: 'TRX-0000001',
-    senderName: 'Pristia Candra',
-    weight: '65',
-    date: '13-02-2025',
-    from: 'Addis Ababa',
-    to: 'Addis Ababa',
-    status: 'Delivered',
-  },
-  {
-    id: 'TRX-0000001',
-    senderName: 'Hanna Baptista',
-    weight: '65',
-    date: '13-02-2025',
-    from: 'Addis Ababa',
-    to: 'Addis Ababa',
-    status: 'Delivered',
-  },
-  {
-    id: 'TRX-0000001',
-    senderName: 'Miracle Geidt',
-    weight: '65',
-    date: '13-02-2025',
-    from: 'Addis Ababa',
-    to: 'Addis Ababa',
-    status: 'Delivered',
-  },
-  {
-    id: 'TRX-0000001',
-    senderName: 'Miracle Geidt',
-    weight: '65',
-    date: '13-02-2025',
-    from: 'Addis Ababa',
-    to: 'Addis Ababa',
-    status: 'Delivered',
-  },
-  {
-    id: 'TRX-0000001',
-    senderName: 'Miracle Geidt',
-    weight: '65',
-    date: '13-02-2025',
-    from: 'Addis Ababa',
-    to: 'Addis Ababa',
-    status: 'Delivered',
-  },
-  {
-    id: 'TRX-0000001',
-    senderName: 'Miracle Geidt',
-    weight: '65',
-    date: '13-02-2025',
-    from: 'Addis Ababa',
-    to: 'Addis Ababa',
-    status: 'Delivered',
-  },
-  {
-    id: 'TRX-0000001',
-    senderName: 'Miracle Geidt',
-    weight: '65',
-    date: '13-02-2025',
-    from: 'Addis Ababa',
-    to: 'Addis Ababa',
-    status: 'Delivered',
-  },
-  {
-    id: 'TRX-0000001',
-    senderName: 'Miracle Geidt',
-    weight: '65',
-    date: '13-02-2025',
-    from: 'Addis Ababa',
-    to: 'Addis Ababa',
-    status: 'Delivered',
-  },
-];
+// const orders = [
+//   {
+//     id: 'TRX-0000001',
+//     senderName: 'Pristia Candra',
+//     weight: '65',
+//     date: '13-02-2025',
+//     from: 'Addis Ababa',
+//     to: 'Addis Ababa',
+//     status: 'Delivered',
+//   },
+//   {
+//     id: 'TRX-0000001',
+//     senderName: 'Hanna Baptista',
+//     weight: '65',
+//     date: '13-02-2025',
+//     from: 'Addis Ababa',
+//     to: 'Addis Ababa',
+//     status: 'Delivered',
+//   },
+//   {
+//     id: 'TRX-0000001',
+//     senderName: 'Miracle Geidt',
+//     weight: '65',
+//     date: '13-02-2025',
+//     from: 'Addis Ababa',
+//     to: 'Addis Ababa',
+//     status: 'Delivered',
+//   },
+//   {
+//     id: 'TRX-0000001',
+//     senderName: 'Miracle Geidt',
+//     weight: '65',
+//     date: '13-02-2025',
+//     from: 'Addis Ababa',
+//     to: 'Addis Ababa',
+//     status: 'Delivered',
+//   },
+//   {
+//     id: 'TRX-0000001',
+//     senderName: 'Miracle Geidt',
+//     weight: '65',
+//     date: '13-02-2025',
+//     from: 'Addis Ababa',
+//     to: 'Addis Ababa',
+//     status: 'Delivered',
+//   },
+//   {
+//     id: 'TRX-0000001',
+//     senderName: 'Miracle Geidt',
+//     weight: '65',
+//     date: '13-02-2025',
+//     from: 'Addis Ababa',
+//     to: 'Addis Ababa',
+//     status: 'Delivered',
+//   },
+//   {
+//     id: 'TRX-0000001',
+//     senderName: 'Miracle Geidt',
+//     weight: '65',
+//     date: '13-02-2025',
+//     from: 'Addis Ababa',
+//     to: 'Addis Ababa',
+//     status: 'Delivered',
+//   },
+//   {
+//     id: 'TRX-0000001',
+//     senderName: 'Miracle Geidt',
+//     weight: '65',
+//     date: '13-02-2025',
+//     from: 'Addis Ababa',
+//     to: 'Addis Ababa',
+//     status: 'Delivered',
+//   },
+// ];
