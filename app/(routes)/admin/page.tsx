@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Eye,
   Trash,
@@ -27,9 +29,37 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { JSX } from 'react';
-
+import { JSX, useEffect, useState } from 'react';
+import { Order } from '@/types/orderType';
+import {  FetchOrders } from '@/actions/order';
+import { formatDate } from '@/lib/utils';
 export default function Dashboard() {
+  const [anOrder, setOrders] = useState<Order[]>([]);
+
+  const today = formatDate(new Date().toDateString());
+  console.log('today:', today);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const response = await FetchOrders();
+        response.map((response: Order) => {
+          console.log(response);
+          if (response.createdAt === today) {
+            console.log('yes');
+
+            setOrders([...anOrder, response]);
+          }
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchOrders();
+  }, []);
+
+  console.log('fetchorders:', anOrder);
+
   return (
     <main className="min-h-screen bg-slate-50 p-4 md:p-8">
       <div className="max-w-7xl mx-auto space-y-8">
@@ -46,25 +76,25 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <StatCard
             title="Total Employees"
-            value="0"
+            value={0}
             icon={<Users className="h-6 w-6 text-white" />}
             color="bg-blue-400"
           />
           <StatCard
             title="Total Admins"
-            value="0"
+            value={0}
             icon={<Shield className="h-6 w-6 text-white" />}
             color="bg-purple-400"
           />
           <StatCard
             title="Delivered Items"
-            value="0"
+            value={0}
             icon={<Truck className="h-6 w-6 text-white" />}
             color="bg-red-400"
           />
           <StatCard
             title="Pending Items"
-            value="0"
+            value={0}
             icon={<Clock className="h-6 w-6 text-white" />}
             color="bg-yellow-400"
           />
@@ -74,25 +104,25 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <StatCard
             title="Total Orders"
-            value="0"
+            value={anOrder.length}
             icon={<Package className="h-6 w-6 text-white" />}
             color="bg-emerald-400"
           />
           <StatCard
             title="Total Revenue"
-            value="0"
+            value={0}
             icon={<DollarSign className="h-6 w-6 text-white" />}
             color="bg-indigo-400"
           />
           <StatCard
             title="Cities Delivered"
-            value="0"
+            value={0}
             icon={<Building className="h-6 w-6 text-white" />}
             color="bg-blue-400"
           />
           <StatCard
             title="Total Employees"
-            value="0"
+            value={0}
             icon={<Users className="h-6 w-6 text-white" />}
             color="bg-purple-400"
           />
@@ -274,7 +304,7 @@ export default function Dashboard() {
 
 type StatCard = {
   title: string;
-  value: string;
+  value: number;
   color: string;
   icon: JSX.Element;
 };

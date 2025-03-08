@@ -534,7 +534,7 @@
       "reciverEmail": "kynyxena@mailinator.com",
       "weight": 28,
       "quantity": 523,
-      "createdAt": "March 5, 2025",
+      "createdAt": "March 8, 2025",
       "transactionId": "DTE26788",
       "status": "Pending",
       "Price": 2928800,
@@ -558,6 +558,26 @@
       "transactionId": "DTE23388",
       "status": "Pending",
       "Price": 200,
+      "addedBy": "Eyosi"
+    },
+    {
+      "id": "4c8546ab-d3c3-42ae-b269-120269a648d0",
+      "senderName": "Eyosias Solomon Lale",
+      "reciverName": "Eyosias Solomon Lale",
+      "description": "Electronics",
+      "senderAddress": "Addis Ababa",
+      "reciverAddress": "Gondar",
+      "paymentMethod": "Now",
+      "senderPhoneNumber": "0972729423",
+      "reciverPhoneNumber": "0925252525",
+      "senderEmail": "eyosila123@gmail.com",
+      "reciverEmail": "eyosias.solomon-ug@aau.edu.et",
+      "weight": 1,
+      "quantity": 120,
+      "createdAt": "March 8, 2025",
+      "transactionId": "DTE85213",
+      "status": "Pending",
+      "Price": 24000,
       "addedBy": "Eyosi"
     }
   ],
@@ -589,9 +609,9 @@
   ],
   "help_support": {
     "item": {
-      "email": "almudukamo123@gmail.com",
-      "phone": "0916272791",
-      "location": "6kilo Addis Ababa"
+      "email": "eyosila123@gmail.com",
+      "phone": "0972729423",
+      "location": "Addis Ababa, Ethiopia"
     }
   }
 }
