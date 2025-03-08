@@ -33,6 +33,11 @@ export default function Dashboard() {
     const fetchOrders = async () => {
       try {
         const response = await FetchOrders();
+        // find other ways to handle it
+        setOrders([]);
+        setPending([]);
+        setDelivered([]);
+        setpickedUp([]);
         response.map((response: Order) => {
           console.log(response);
           if (response.createdAt === today) {
