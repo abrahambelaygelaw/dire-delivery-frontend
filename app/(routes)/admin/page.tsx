@@ -23,6 +23,8 @@ import { DataTable } from '@/components/order/admin/orderTable';
 export default function Dashboard() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [pending, setPending] = useState<Order[]>([]);
+  const [delivered, setDelivered] = useState<Order[]>([]);
+  const [pickedUp, setpickedUp] = useState<Order[]>([]);
 
   const today = formatDate(new Date().toDateString());
   console.log('today:', today);
@@ -35,11 +37,20 @@ export default function Dashboard() {
           console.log(response);
           if (response.createdAt === today) {
             console.log('yes');
-
             setOrders([...orders, response]);
-          }
-          if (response.status === 'Pending') {
-            setPending([...pending, response]);
+            switch (response.status) {
+              case 'Pending':
+                setPending([...pending, response]);
+                break;
+              case 'delivered':
+                setDelivered([...delivered, response]);
+                break;
+              case 'pickedUp':
+                setpickedUp([...pickedUp, response]);
+                break;
+              default:
+                break;
+            }
           }
         });
       } catch (error) {
@@ -85,7 +96,7 @@ export default function Dashboard() {
           />
           <StatCard
             title="Delivered Items"
-            value={0}
+            value={delivered.length}
             icon={<Truck className="h-6 w-6 text-white" />}
             color="bg-red-400"
           />
@@ -118,8 +129,8 @@ export default function Dashboard() {
             color="bg-blue-400"
           />
           <StatCard
-            title="Total Employees"
-            value={0}
+            title="Picked Up Items"
+            value={pickedUp.length}
             icon={<Users className="h-6 w-6 text-white" />}
             color="bg-purple-400"
           />
