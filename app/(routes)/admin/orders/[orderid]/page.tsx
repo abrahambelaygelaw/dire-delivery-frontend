@@ -15,12 +15,13 @@ import {
 import { notFound } from 'next/navigation';
 import { formatDate } from '@/lib/utils';
 import Link from 'next/link';
-interface Params {
-  orderid: string;
-}
 
-export default async function OrderPage({ params }: { params: Params }) {
-  const { orderid } = await params;
+export default async function OrderPage({
+  params,
+}: {
+  params: Promise<{ orderid: string }>
+}) {
+  const { orderid } = await params
   const id = orderid;
   console.log(id);
 
