@@ -166,7 +166,7 @@ export function DataTable<
 
                       <DropdownMenuContent align="end" className="w-40">
                         <Link
-                          href={`/admin/orders/${row.original.transactionId}`}
+                          href={`/owner/orders/${row.original.transactionId}`}
                           passHref
                         >
                           <DropdownMenuItem className="cursor-pointer">
