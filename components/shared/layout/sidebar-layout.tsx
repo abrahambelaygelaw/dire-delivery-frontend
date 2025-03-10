@@ -36,7 +36,7 @@ export default function SidebarLayout() {
       icon: Users,
     },
     {
-      title: 'Admins',
+      title: 'admins',
       url: '/owner/admins',
       icon: UserCog,
     },
@@ -177,7 +177,7 @@ export default function SidebarLayout() {
               state == 'collapsed' && 'px-2'
             )}
           >
-            <div className={cn("flex gap-1.5", )}>
+            <div className={cn('flex gap-1.5')}>
               <Avatar className="cursor-pointer">
                 <AvatarImage src="https://github.com/shadcn.png" />
                 <AvatarFallback>CN</AvatarFallback>

@@ -8,8 +8,8 @@ export const menuItems = [
     icon: Users,
   },
   {
-    title: 'Admins',
-    url: '/owner/admins',
+    title: 'owners',
+    url: '/owner/owners',
     icon: UserCog,
   },
   {
