@@ -151,7 +151,7 @@ export default function SidebarLayout() {
         className={cn('p-5 bg-[#060A87]', state == 'collapsed' && 'px-0')}
       >
         <div className="flex flex-col gap-4 ">
-          <Link href="admin/help">
+          <Link href="/admin/help">
             <div className="flex gap-2.5 cursor-pointer">
               <Image
                 src={question}
