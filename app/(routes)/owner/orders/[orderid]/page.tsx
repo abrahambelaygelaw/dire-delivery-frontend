@@ -44,7 +44,7 @@ export default async function OrderPage({
         <div className="bg-white rounded-lg p-6 shadow-sm">
           <div className="flex justify-between items-center mb-6">
             <div className="flex items-center justify-center">
-              <Link href={`/admin/orders`}>
+              <Link href={`/owner/orders`}>
                 <Button
                   variant="ghost"
                   className="flex items-center gap-2 w-fit h-fit"

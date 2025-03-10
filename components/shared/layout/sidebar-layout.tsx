@@ -32,22 +32,22 @@ export default function SidebarLayout() {
   const menuItems = [
     {
       title: 'Employees',
-      url: '/admin/employees',
+      url: '/owner/employees',
       icon: Users,
     },
     {
       title: 'Admins',
-      url: '/admin/admins',
+      url: '/owner/admins',
       icon: UserCog,
     },
     {
       title: 'Orders',
-      url: '/admin/orders',
+      url: '/owner/orders',
       icon: ClipboardList,
     },
     {
       title: 'Settings',
-      url: '/admin/settings',
+      url: '/owner/settings',
       icon: Settings,
     },
   ];
@@ -101,7 +101,7 @@ export default function SidebarLayout() {
           <SidebarToggle reversed={true} />
         </div>
         <Link
-          href="/admin"
+          href="/owner"
           className={cn(
             ' ml-5 mr-5 py-4 px-5 flex justify-between items-center rounded-[10px] font-bold bg-[#C7E7F6F5]',
             state == 'collapsed' && 'hidden'
@@ -113,7 +113,7 @@ export default function SidebarLayout() {
           <LuLayoutGrid stroke="#060A87" size={24} />
         </Link>
         <Link
-          href="/admin"
+          href="/owner"
           className={cn(
             ' ml-2 mr-2 py-4 px-5 flex justify-between items-center rounded-[10px] font-bold bg-[#C7E7F6F5]',
             state !== 'collapsed' && 'hidden'
@@ -151,7 +151,7 @@ export default function SidebarLayout() {
         className={cn('p-5 bg-[#060A87]', state == 'collapsed' && 'px-0')}
       >
         <div className="flex flex-col gap-4 ">
-          <Link href="/admin/help">
+          <Link href="/owner/help">
             <div className="flex gap-2.5 cursor-pointer">
               <Image
                 src={question}
