@@ -151,7 +151,7 @@ export default function SidebarLayout() {
         className={cn('p-5 bg-[#060A87]', state == 'collapsed' && 'px-0')}
       >
         <div className="flex flex-col gap-4 ">
-          <Link href="admin/help">
+          <Link href="/admin/help">
             <div className="flex gap-2.5 cursor-pointer">
               <Image
                 src={question}
@@ -173,11 +173,11 @@ export default function SidebarLayout() {
           </Link>
           <div
             className={cn(
-              'flex w-full justify-between items-center relative',
+              'hidden w-full justify-between items-center relative md:flex',
               state == 'collapsed' && 'px-2'
             )}
           >
-            <div className="flex gap-1.5">
+            <div className={cn("flex gap-1.5", )}>
               <Avatar className="cursor-pointer">
                 <AvatarImage src="https://github.com/shadcn.png" />
                 <AvatarFallback>CN</AvatarFallback>
