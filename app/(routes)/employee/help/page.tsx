@@ -22,13 +22,14 @@ export default function Page() {
     fetchHelp();
   }, []);
 
+  const userName = 'employee'; //will be assigned after auth
   return (
     <>
       <div className="h-screen bg-[#f0f1fa] flex p-6 md:p-10">
         <div className="w-full">
           <div className="mb-6">
             <h1 className="text-3xl font-bold text-[#0a0f8a]">
-              Welcome Back, Owner!
+              Welcome Back, {userName}!
             </h1>
             <p className="text-[#0a0f8a]/80">
               Here&apos;s your Help and Support
