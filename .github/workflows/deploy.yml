@@ -11,14 +11,14 @@ jobs:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
 
-      - name: Use Node.js 22
+      - name: Use Node.js 22.11.0
         uses: actions/setup-node@v2
         with:
-          node-version: '22.x'
+          node-version: '22.11.0'
 
       - name: 🔨 Build Project
         run: |
-          npm install
+          npm install --legacy-peer-deps
           npm run build
 
       - name: 📂 Sync files
