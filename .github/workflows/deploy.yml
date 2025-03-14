@@ -30,7 +30,7 @@ jobs:
           protocol: ftp
           port: 22
           dangerous-clean-slate: true
-          local-dir: ./out/
+          local-dir: ./
           server-dir: /public_html/
 
 # on:
