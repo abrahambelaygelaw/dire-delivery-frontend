@@ -27,8 +27,11 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          protocol:sftp
+          port:22
           dangerous-clean-slate: true
-          local-dir: ./
+          local-dir: ./out/
+          server-dir: /public_html/
 
 # on:
 #   push:
